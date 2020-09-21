@@ -38,7 +38,10 @@ module.exports = {
       }
     }
   },
-  plugins: ['~/directives.js'],
+  plugins: [
+      '~/directives.js',
+      { src: '~/ScrollMagic.js', mode: 'client' }
+  ],
   modules: [
     '@nuxtjs/style-resources',
   ],

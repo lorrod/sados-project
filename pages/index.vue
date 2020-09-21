@@ -1,9 +1,10 @@
 <template>
-  <div class="mainConteiner" :class="setScroll" v-scroll="handleScroll">
+  <div class="mainConteiner" v-scroll="handleScroll">
+    <div  v-if="desktop"></div>
     <menubar />
-    <container />
-    <container2 />
-    <container3 />
+    <container :class="showFirst"/>
+    <container2 :class="showSecond"/>
+    <container3 :class="showThird"/>
     <toTopButton class-name="container"/>
   </div>
 </template>
@@ -27,23 +28,35 @@ export default {
     return {
       setScroll: '',
       coordY: 0,
-      showSection: 'first'
+      showFirst: '',
+      showSecond: '',
+      showThird: '',
+      desktop: false,
     }
   },
   methods: {
     handleScroll() {
+      if (window.innerWidth < 830) {
+        return
+      }
       this.coordY += window.scrollY
-      if (window.scrollY < 50) {
-        this.showSection = 'first'
+      if (window.scrollY < 200) {
+        this.showFirst = 'mainConteiner__container--shown mainConteiner__container--shown--main'
+        this.showSecond = 'mainConteiner__container'
+        this.showThird = 'mainConteiner__container'
         console.log('show first')
-      } else if (window.scrollY > 50 && window.scrollY < 100) {
-        this.showSection = 'second'
+      } else if (window.scrollY > 200 && window.scrollY < 400) {
+        this.showFirst = 'mainConteiner__container'
+        this.showSecond = 'mainConteiner__container--shown mainConteiner__container--shown--secondary'
+        this.showThird = 'mainConteiner__container'
         console.log('show second')
-      } else if (window.scrollY > 100 && window.scrollY < 150) {
-        this.showSection = 'third'
+      } else if (window.scrollY > 400 && window.scrollY < 600) {
+        this.showFirst = 'mainConteiner__container'
+        this.showSecond = 'mainConteiner__container'
+        this.showThird = 'mainConteiner__container--shown mainConteiner__container--shown--secondary'
         console.log('show third')
-      } else if (window.scrollY > 150) {
-        // window.scrollTo(0,140);
+      } else if (window.scrollY > 600) {
+        window.scrollTo(0,590);
       }
 
       // window.scrollTo(0,0);
@@ -51,6 +64,12 @@ export default {
       console.log(window.scrollY)
     }
   },
+  mounted() {
+    const scene = this.$scrollmagic.Scene({
+      triggerElement: '.line'
+    })
+    .setClassToggle('.line', '.showhsohsohso')
+  }
 }
 </script>
 
@@ -62,5 +81,31 @@ export default {
      z-index: 50;
    }
  }
+
+ @media (min-width: $mediumScreen) {
+   .mainConteiner {
+     &__container {
+       opacity: 0;
+       width: 100vw;
+       position: block;
+       &--shown {
+         &--main {
+           transform: translateX(-3%);
+         }
+         &--secondary {
+           transform: translateX(2%);
+         }
+         z-index: -50;
+         opacity: 100;
+         width: 100vw;
+         position: fixed;
+         top: 0%;
+         left: 0%;
+         transition: 1s;
+       }
+     }
+   }
+ }
+
 </style>
 
