@@ -32,7 +32,7 @@ export default {
   height: 100vh;
 }
 
-@media (max-width: $smallScreen) {
+@media (max-width: $mediumScreen) {
   .container {
     flex-direction: column;
     margin: 0;

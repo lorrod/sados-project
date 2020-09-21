@@ -1,6 +1,6 @@
 // vars for menubar
-$menuWidth: 60px;
-$menuMobileHeight: 60px;
+$menuWidth: 70px;
+$menuMobileHeight: 70px;
 
 
 // var for content
@@ -8,5 +8,10 @@ $marginContent: 70px;
 
 // screens resolution
 $smallScreen: 619px;
-$mediumScreen: 720px;
+$mediumScreen: 830px;
 
+@font-face {
+  font-family: "Graphik LCG";
+  src: local("Graphik LCG"),
+   url(~static/fonts/Graphic-LCG/GraphikLCG-Extralight.ttf) format("truetype");
+}

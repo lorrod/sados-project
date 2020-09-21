@@ -1,7 +1,7 @@
 <template>
  <div class="container2">
     <shareInformation class="container2__info"/>
-    <categories />
+    <categories class="container2__categories"/>
  </div>
 </template>
 
@@ -26,6 +26,9 @@ export default {
     display: flex;
     &__info {
       flex: 1 2 auto;
+    }
+    &__categories {
+      align-content: center;
     }
   }
   @media (max-width: 1010px) {

@@ -57,7 +57,7 @@ export default {
 <style lang="scss">
  .mainConteiner{
     overflow-x: hidden;// on MacOS Chrome and Safari dont require
-    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif; /* this was it */
+    font-family: "Graphik LCG"; /* this was it */
    &__check {
      z-index: 50;
    }

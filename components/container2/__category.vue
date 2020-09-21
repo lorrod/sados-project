@@ -1,11 +1,11 @@
 <template>
   <div class="category">
     <div class="category__image-container">
-      <img class="category__image" :src="'/categories/'+catName+'.jpg'" :alt="catName">
+      <img class="category__image" :src="'/categories/'+catName+'.svg'" :alt="catName">
     </div>
     <div class="category__button">
       <p>{{ catName }}</p>
-      <img class="category__button--img" alt="show" src="/next-button/circle-next_48.png">
+      <img class="category__button--img" alt="show" src="/next-button/next-button-black.svg">
     </div>
   </div>
 </template>
@@ -44,6 +44,8 @@ export default {
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
       &--img {
         margin-left: 5px;
       }
@@ -52,7 +54,7 @@ export default {
   @media (max-width: $smallScreen) {
     .category {
       &__image {
-        width: 60%;
+        width: 100%;
       }
     }
   }

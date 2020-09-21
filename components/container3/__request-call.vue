@@ -70,6 +70,7 @@ export default {
       border: none;
       border-bottom: 1px solid #888;
       height: 40px;
+      margin-bottom: 15px;
       outline: none;
       //width: 100%;
       &--name {
@@ -102,7 +103,7 @@ export default {
       margin: 30px auto 30px auto;
       background-color: rgb(235,233,224);
       border-radius: 10px;
-      padding: 10px 20px 10px 20px;
+      padding: 18px 40px 18px 40px;
       font-weight: 600;
       margin: 10px 10px 10px 0;
       cursor: pointer;

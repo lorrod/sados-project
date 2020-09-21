@@ -42,7 +42,7 @@ export default {
   @media (max-width: $smallScreen) {
    .container3 {
     padding-left: $marginContent / 2;
-    padding-top: $marginContent * 10;
+    padding-top: $marginContent * 6;
      margin-top: $marginContent;
    }
   }

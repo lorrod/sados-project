@@ -4,7 +4,7 @@
       <div class="menubar__labels">
         <div class="menubar__btn-with-name">
           <div class="menubar__btn" @click.stop="showContent">
-            <img class="menubar__btn--img" src="/menu/menu-24.png" alt="mail">
+            <img class="menubar__btn--img" src="/menu/menu-btn.svg" alt="mail">
           </div>
           <div class="menubar__company">
             <p>ООО</p>
@@ -12,9 +12,9 @@
           </div>
         </div>
         <div class="menubar__contacts">
-          <img class="menubar__contacts--img" src="/mobile-phone/mobile-phone-24.png" alt="mobile">
-          <img class="menubar__contacts--img" src="/phone/phone-24.png" alt="phone">
-          <img class="menubar__contacts--img" src="/envelope/envelope-24.png" alt="mail">
+          <img class="menubar__contacts--img" src="/mobile-phone/mobile-phone-menu.svg" alt="mobile">
+          <img class="menubar__contacts--img" src="/phone/phone-menu.svg" alt="phone">
+          <img class="menubar__contacts--img" src="/envelope/envelope-menu.svg" alt="mail">
         </div>
       </div>
     </div>
@@ -83,11 +83,11 @@ export default {
     display: flex;
     width: $menuWidth;
     height: $menuWidth;
-    background-color: rgb(238,236,231);
+    background-color: #EEECE7;
     &--img {
       // display: block;
-      width: $menuWidth / 2;
-      height: $menuWidth / 2;
+      // width: $menuWidth / 2;
+      // height: $menuWidth / 2;
       margin: auto;
       // vertical-align:middle;
     }
@@ -110,7 +110,7 @@ export default {
     }
   }
   &__information {
-    margin-bottom: $menuWidth;
+    margin-bottom: 100px;
     &--hr {
       margin-left: $menuWidth + $menuWidth / 4;
       margin-right: $menuWidth / 4;
@@ -143,12 +143,13 @@ export default {
     }
   }
   &__company {
+    color: #1F1F1F;
     transform: rotate(-90deg);
     display: flex;
     margin-top: 150px;
-    font-size: 20px;
+    font-size: 25px;
     &--brand {
-      font-weight: 900;
+      font-weight: bold;
       margin-left: 5px;
     }
   }
@@ -156,14 +157,15 @@ export default {
     display: flex;
     text-align: center;
     flex-direction: column;
+    margin-bottom: 33px;
     &--img {
       margin: 5px auto 5px auto;
-      width: 24px;// strange auto fit width
+      // width: 24px;// strange auto fit width
     }
   }
 }
 
-@media (max-width: $smallScreen) {
+@media (max-width: $mediumScreen) {
   .menubar {
     min-width: 340px;
     &--style {
@@ -204,6 +206,8 @@ export default {
     }
     &__contacts {
       flex-direction: row;
+      margin-bottom: 0;
+      margin-right: 33px;
     &--img {
       margin: auto 5px auto 5px;
       width: 24px;// strange auto fit width

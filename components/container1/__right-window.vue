@@ -1,7 +1,7 @@
 <template>
   <div class="right-window">
     <div class="right-window__image-container">
-      <img class="right-window__image" src="/main-pictures/wood.jpg" alt="wood">
+      <img class="right-window__image" src="/main-pictures/loader-machine.svg" alt="wood">
     </div>
     <div class="right-window__information">
       <div class="right-window__text">
@@ -10,7 +10,7 @@
       </div>
       <hr>
       <div class="right-window__button">
-        <img class="right-window__button--img" src="/dots/dots-50.png" alt="dots">
+        <img class="right-window__button--img" src="/dots/nine-dots.svg" alt="dots">
         <a class="right-window__button--href" href="#">Все виды техники</a>
       </div>
     </div>
@@ -25,11 +25,11 @@ name: "rightWindow"
 
 <style lang="scss">
   .right-window {
-    width: 30%;
+    width: 25%;
     height: 100%;
     overflow: hidden;
     &__image-container {
-      height: 70%;
+      height: 66%;
       overflow: hidden;
     }
     &__image {
@@ -40,43 +40,51 @@ name: "rightWindow"
       display: flex;
       flex-direction: row;
       align-items: center;
+      // margin-top: 30px;
       &--img {
         //margin: auto;
-        width: 24px;
-        height: 24px;
+        //width: 24px;
+        //height: 24px;
       }
       &--href {
-        font-size: 12px;
-        font-weight: 600;
-        margin-left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 30px;
         text-decoration: none;
         color: rgb(30,30,30);
       }
     }
     &__information {
-      height: 23%;
-      margin: 20px;
+      padding: 25px;
+      height: 33%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
     &__warning {
-      font-size: 45px;
+      font-size: 70px;
       font-weight: 900;
+      white-space: nowrap;
+    }
+    &__explanation {
+      //white-space: nowrap;
     }
     &__text {
-      font-weight: 500;
+      font-size: 25px;
+      // margin-bottom: 30px;
+      font-weight: 600;
     }
   }
 
-  @media (max-width: $smallScreen) {
+
+  @media (max-width: $mediumScreen) {
     .right-window {
       display: flex;
       width: 100%;
       height: 50%;
       &__image-container {
         width: 60%;
-        height: 100%;
+        height: auto;
         overflow: hidden;
       }
       &__image {
@@ -85,8 +93,9 @@ name: "rightWindow"
         height: auto;
       }
       &__information {
-        width: 30%;
-        height: 75%;
+        margin: auto;
+        padding: 10px;
+        height: 70%;
       }
     }
   }

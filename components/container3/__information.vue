@@ -11,11 +11,11 @@
     </div>
     <div class="information__numbers">
       <div class="information__numbers--rows">
-        <img class="information__numbers--img" src="/mobile-phone/mobile-phone-24_154-140-123.png" alt="mobile">
+        <img class="information__numbers--img" src="/mobile-phone/mobile-phone.svg" alt="mobile">
         <p>+7 (999) 888-55-33</p>
       </div>
       <div class="information__numbers--rows">
-        <img class="information__numbers--img" src="/phone/phone-24_154-140-123.png" alt="phone">
+        <img class="information__numbers--img" src="/phone/phone-light.svg" alt="phone">
         <p>+7 (495) 116-16-59</p>
       </div>
     </div>
@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss">
   .information {
+    font-weight: 600;
     // width: 100%;
     // height: 100%;
     &__header {
