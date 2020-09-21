@@ -48,7 +48,7 @@ export default {
       font-size: 45px;
     }
     &__text {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 600;
     }
     &__button-about {
