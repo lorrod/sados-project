@@ -25,8 +25,8 @@ name: "container",
     overflow: hidden;
     transition: all ease .5s;
     &__image {
+      height: 120%;
       width: auto;
-      height: 100%;
     }
   }
 </style>

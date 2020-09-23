@@ -15,7 +15,6 @@
         :currentDot="this.$store.state.shownImageIndexPrimary"
         :count-pages="this.$store.state.imageArray.length" />
     </div>
-    <button @click="checking" class="checkingButton">Check button</button>
   </div>
 </template>
 
@@ -52,20 +51,20 @@ name: "container",
   methods: {
     showImage(imgNumber) {
       const timeline = new TimelineLite()
-      console.log('animate plz')
-      timeline.to("#image-"+this.$store.state.imageArray[imgNumber], .1, { x: '-100%' })
+      timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '-100%' })
+      // таким образом пытаюсь gsap
+      // gsap.from("#image-"+this.$store.state.imageArray[imgNumber], { x: '-100%', duration: 2, opacity: 100 })
     },
     hideImage(imgNumber) {
       const timeline = new TimelineLite()
-      console.log('animate plz')
-      timeline.to("#image-"+this.$store.state.imageArray[imgNumber], .1, { x: '-200%' })
+      timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '+200%' })
+      // таким образом пытаюсь gsap
+      // gsap.from("#image-"+this.$store.state.imageArray[imgNumber], { x: '+100%', duration:2, opacity: 0 })
+
     },
-    checking() {
-      console.log('animate plz 1')
-      this.showImage(0)
-    }
   },
-  created() {
+  mounted() {
+    this.showImage(this.currentImageIndex)
   }
 }
 </script>

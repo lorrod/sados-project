@@ -24,7 +24,7 @@ export default {
     ...mapMutations(['INCREMENT_IMAGE_INDEX']),
 
     startTimer() {
-      this.intervalId = window.setInterval(()=>{this.INCREMENT_IMAGE_INDEX()}, 30000);
+      this.intervalId = window.setInterval(()=>{this.INCREMENT_IMAGE_INDEX()}, 10000);
     },
     stopTimer() {
       window.clearInterval(this.intervalId)// not used
