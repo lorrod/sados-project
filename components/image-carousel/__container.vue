@@ -6,7 +6,7 @@
       :key="key">
         <imageDiv
           :image-name="name"
-          :id="'image-'+name"
+          :id="'image-'+name+'_'+classPriority"
         />
       </div>
       <paging
@@ -41,6 +41,12 @@ name: "container",
       return state.imageArray.length
     },
     imageArray: state => state.imageArray,
+    classPriority () {
+      if (this.pagingRequire) {
+        return 'primary'
+      }
+      return 'general'
+    }
   }),
   props: {
     pagingRequire: {
@@ -64,19 +70,22 @@ name: "container",
   },
   methods: {
     showImage(imgNumber) {
-      //timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '-100%' })
-      // таким образом пытаюсь gsap
-      gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber], {x: '100%'}, {x: '-100%'})
+      if (this.pagingRequire) {
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: '100%'}, {x: '-100%'})
+      } else {
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: '100%'}, {x: '-100%'})
+      }
+      console.log('gsaping to show '+ imgNumber.toString())
     },
     hideImage(imgNumber) {
-      //timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '+200%' })
-      // таким образом пытаюсь gsap
-      gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber], {x: '-100%'}, {x: '+100%'})
-
+      if (this.pagingRequire) {
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: '-100%'}, {x: '+100%'})
+      } else {
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: '-100%'}, {x: '+100%'})
+      }
     },
   },
   mounted() {
-    //this.timeline = new TimelineLite()
     this.showImage(this.currentImageIndex)
   }
 }

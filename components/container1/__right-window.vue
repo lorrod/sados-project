@@ -70,8 +70,7 @@ name: "rightWindow",
       justify-content: space-between;
     }
     &__warning {
-      font-size: 70px;
-      font-weight: 900;
+      font-size: 80px;
       white-space: nowrap;
     }
     &__explanation {
