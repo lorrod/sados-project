@@ -19,6 +19,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "gsap": "^3.5.1",
     "nuxt": "^2.0.0",
     "scrollmagic": "^2.0.7"
   },
