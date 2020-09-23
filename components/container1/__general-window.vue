@@ -1,5 +1,9 @@
 <template>
   <div class="general-window">
+    <imgCarousel class="general-window__background-image"
+                 :pagingRequire="false"
+                 :currentImageIndex="this.$store.state.shownImageIndexGeneral"
+                 />
     <div class="general-window__slogan">
       Сдаём в аренду спецтехнику
     </div>
@@ -10,8 +14,12 @@
 </template>
 
 <script>
+import imgCarousel from '../image-carousel/__container'
 export default {
   name: "generalWindow",
+  components: {
+    imgCarousel,
+  },
   methods: {
     scrollNextSection(section) {
       document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
@@ -24,13 +32,22 @@ export default {
   .general-window {
     width: 100%;
     height: 100%;
-    background: rgb(50,45,36);
-    background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
-    background-image: url(/main-pictures/excavator.svg);
-    background-size: cover;
+    //background: rgb(50,45,36);
+    //background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
+    //background-image: url(/main-pictures/excavator.svg);
+    //background-size: cover;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    position: relative;
+    &__background-image{
+      overflow: hidden;
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      z-index:-50;
+    }
     &__slogan {
       color: white;
       margin-left: $marginContent;
@@ -62,5 +79,9 @@ export default {
       }
   }
 }
-
+/*
+  <imgCarousel :image-data="['excavator','excavator2', 'loader-machine']" :pagingRequire="true"/>
+import imgCarousel from '../image-carousel/__container'
+imgCarousel,
+*/
 </style>

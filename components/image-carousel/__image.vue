@@ -1,0 +1,32 @@
+<template>
+  <div class="image-carousel">
+    <img class="image-carousel__image" :src="'/main-pictures/'+imageName+'.svg'" :alt="imageName">
+  </div>
+</template>
+
+<script>
+export default {
+name: "container",
+  props: {
+    imageName: {
+      type: String,
+      default() {
+        return 'excavator'
+      }
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+  .image-carousel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: all ease .5s;
+    &__image {
+      width: auto;
+      height: 100%;
+    }
+  }
+</style>

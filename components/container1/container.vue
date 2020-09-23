@@ -8,7 +8,7 @@
 <script>
 import generalWindow from './__general-window'
 import rightWindow from './__right-window'
-
+import { mapMutations } from 'vuex'
 export default {
   name: "container",
   components: {
@@ -17,10 +17,21 @@ export default {
   },
   data() {
     return {
+      intervalId: '',
     }
   },
   methods: {
+    ...mapMutations(['INCREMENT_IMAGE_INDEX']),
 
+    startTimer() {
+      this.intervalId = window.setInterval(()=>{this.INCREMENT_IMAGE_INDEX()}, 30000);
+    },
+    stopTimer() {
+      window.clearInterval(this.intervalId)// not used
+    },
+  },
+  mounted() {
+    this.startTimer()
   }
 }
 </script>

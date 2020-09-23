@@ -1,7 +1,7 @@
 <template>
   <div class="right-window">
     <div class="right-window__image-container">
-      <img class="right-window__image" src="/main-pictures/loader-machine.svg" alt="wood">
+      <imgCarousel :currentImageIndex="this.$store.state.shownImageIndexPrimary" :pagingRequire="true"/>
     </div>
     <div class="right-window__information">
       <div class="right-window__text">
@@ -18,8 +18,12 @@
 </template>
 
 <script>
+import imgCarousel from '../image-carousel/__container'
 export default {
-name: "rightWindow"
+name: "rightWindow",
+  components: {
+    imgCarousel,
+  },
 }
 </script>
 
