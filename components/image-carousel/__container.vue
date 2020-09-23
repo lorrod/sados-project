@@ -21,12 +21,17 @@
 <script>
 import imageDiv from "./__image"
 import paging from "./__paging"
-import { TimelineLite } from 'gsap'
+import { gsap } from "gsap"
 export default {
 name: "container",
   components: {
     imageDiv,
     paging,
+  },
+  data() {
+    return {
+      timeline: null,
+    }
   },
   props: {
     pagingRequire: {
@@ -50,20 +55,19 @@ name: "container",
   },
   methods: {
     showImage(imgNumber) {
-      const timeline = new TimelineLite()
-      timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '-100%' })
+      //timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '-100%' })
       // таким образом пытаюсь gsap
-      // gsap.from("#image-"+this.$store.state.imageArray[imgNumber], { x: '-100%', duration: 2, opacity: 100 })
+      gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber], {x: '100%'}, {x: '-100%'})
     },
     hideImage(imgNumber) {
-      const timeline = new TimelineLite()
-      timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '+200%' })
+      //timeline.to("#image-"+this.$store.state.imageArray[imgNumber], 2, { x: '+200%' })
       // таким образом пытаюсь gsap
-      // gsap.from("#image-"+this.$store.state.imageArray[imgNumber], { x: '+100%', duration:2, opacity: 0 })
+      gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber], {x: '-100%'}, {x: '+100%'})
 
     },
   },
   mounted() {
+    //this.timeline = new TimelineLite()
     this.showImage(this.currentImageIndex)
   }
 }
