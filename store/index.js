@@ -29,6 +29,7 @@ const store = () =>
         state.shownImageIndexGeneral = 0
       }
     }
-  }
+  },
+
   })
 export default store

@@ -1,7 +1,7 @@
 <template>
   <div class="right-window">
     <div class="right-window__image-container">
-      <imgCarousel :currentImageIndex="this.$store.state.shownImageIndexPrimary" :pagingRequire="true"/>
+      <imgCarousel :currentImageIndex="shownImageIndexPrimary" :pagingRequire="true"/>
     </div>
     <div class="right-window__information">
       <div class="right-window__text">
@@ -19,11 +19,15 @@
 
 <script>
 import imgCarousel from '../image-carousel/__container'
+import {mapState} from "vuex";
 export default {
 name: "rightWindow",
   components: {
     imgCarousel,
   },
+  computed: mapState({
+    shownImageIndexPrimary: state => state.shownImageIndexPrimary,
+  }),
 }
 </script>
 

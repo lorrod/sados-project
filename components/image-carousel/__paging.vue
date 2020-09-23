@@ -1,7 +1,7 @@
 <template>
   <div class="paging">
     <div class="paging__row">
-      <div class="paging__container" v-for="count in this.$store.state.imageArray.length" :key="count" @click="selectImage(count-1)">
+      <div class="paging__container" v-for="count in arrayLength" :key="count" @click="selectImage(count-1)">
         <img src="/dots/page-dot.svg" alt="dot" class="paging__dot" :class="checkSelect(count-1)">
       </div>
     </div>
@@ -9,11 +9,17 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 export default {
 name: "paging",
   computed: {
   },
+  computed: mapState({
+    shownImageIndexPrimary: state => state.shownImageIndexPrimary,
+    arrayLength (state) {
+      return state.imageArray.length
+    },
+  }),
   methods: {
     ...mapMutations(['SET_IMAGE_INDEX']),
     selectImage(dotNumber) {
@@ -21,7 +27,7 @@ name: "paging",
       //this.$emit('setActive', dotNumber)
     },
     checkSelect(dotNumber) {
-      if (dotNumber === this.$store.state.shownImageIndexPrimary) {
+      if (dotNumber === this.shownImageIndexPrimary) {
         return 'paging__dot--active'
       }
       return ''

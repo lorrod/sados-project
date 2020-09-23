@@ -2,7 +2,7 @@
   <div class="carousel-container">
     <div class="carousel-container__images">
       <div class="carousel-container__image"
-      v-for="(name, key) in this.$store.state.imageArray"
+      v-for="(name, key) in imageArray"
       :key="key">
         <imageDiv
           :image-name="name"
@@ -12,8 +12,8 @@
       <paging
         v-if="pagingRequire"
         class="carousel-container__pages"
-        :currentDot="this.$store.state.shownImageIndexPrimary"
-        :count-pages="this.$store.state.imageArray.length" />
+        :currentDot="shownImageIndexPrimary"
+        :count-pages="arrayLength" />
     </div>
   </div>
 </template>
@@ -22,6 +22,8 @@
 import imageDiv from "./__image"
 import paging from "./__paging"
 import { gsap } from "gsap"
+import { mapState } from 'vuex'
+
 export default {
 name: "container",
   components: {
@@ -33,6 +35,13 @@ name: "container",
       timeline: null,
     }
   },
+  computed: mapState({
+    shownImageIndexPrimary: state => state.shownImageIndexPrimary,
+    arrayLength (state) {
+      return state.imageArray.length
+    },
+    imageArray: state => state.imageArray,
+  }),
   props: {
     pagingRequire: {
       type: Boolean,

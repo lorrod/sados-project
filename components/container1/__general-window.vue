@@ -2,7 +2,7 @@
   <div class="general-window">
     <imgCarousel class="general-window__background-image"
                  :pagingRequire="false"
-                 :currentImageIndex="this.$store.state.shownImageIndexGeneral"
+                 :currentImageIndex="shownImageIndexGeneral"
                  />
     <div class="general-window__slogan">
       Сдаём в аренду спецтехнику
@@ -15,11 +15,15 @@
 
 <script>
 import imgCarousel from '../image-carousel/__container'
+import {mapState} from "vuex";
 export default {
   name: "generalWindow",
   components: {
     imgCarousel,
   },
+  computed: mapState({
+    shownImageIndexGeneral: state => state.shownImageIndexGeneral,
+  }),
   methods: {
     scrollNextSection(section) {
       document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
