@@ -81,7 +81,8 @@ name: "rightWindow",
     &__text {
       font-size: 25px;
       // margin-bottom: 30px;
-      font-weight: 600;
+      font-weight: 500;
+      font-family: "Graphik LCG";
     }
   }
 

@@ -35,7 +35,8 @@ name: "container",
       timeline: null,
     }
   },
-  computed: mapState({
+  computed: {
+    ...mapState({
     shownImageIndexPrimary: state => state.shownImageIndexPrimary,
     arrayLength (state) {
       return state.imageArray.length
@@ -46,8 +47,13 @@ name: "container",
         return 'primary'
       }
       return 'general'
+      },
+    }),
+    getCarouselWidth() {
+      //console.log(this.$refs.carouselWindow.clientWidth)
+      return this.$refs.carouselWindow.clientWidth
     },
-  }),
+  },
   props: {
     pagingRequire: {
       type: Boolean,
@@ -64,46 +70,42 @@ name: "container",
   },
   watch: {
     currentImageIndex: function (newIndex, oldIndex) {
-      this.showImage(newIndex)
-      this.hideImage(oldIndex)
-      this.returnBack(oldIndex)
+      //this.showImage(newIndex)
+      //this.hideImage(oldIndex)
+      //this.returnBack(oldIndex)
+      this.nextImage(newIndex, oldIndex)
     }
   },
   methods: {
-    getCarouselWidth() {
-      console.log(this.$refs.carouselWindow.clientWidth)
-      return this.$refs.carouselWindow.clientWidth
+    nextImage(nextNumber, prevNumber) {
+      if (this.pagingRequire) {
+        // from right to center image
+        gsap.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_primary', {x: this.getCarouselWidth, opacity: 1,}, {x: -this.getCarouselWidth, duration: 0.5})
+        // from center to left image
+        gsap.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: -this.getCarouselWidth}, {x: -2*this.getCarouselWidth, opacity: 0, duration: 0.5, delay: 0.1})
+        // return image to right position
+        gsap.to("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: this.getCarouselWidth, duration: 0, delay: 1, ease: "none"})
+      } else {
+        //from right to left image
+        gsap.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_general', {x: this.getCarouselWidth, opacity: 1}, {x: -this.getCarouselWidth, duration: 0.5})
+        // from center to left
+        gsap.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, opacity: 0, duration: 0.5, delay: 0.1})
+        // return image to right position
+        gsap.to("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: this.getCarouselWidth, duration: 0, delay: 1, ease: "none"})
+      }
     },
     showImage(imgNumber) {
-      this.getCarouselWidth()
       if (this.pagingRequire) {
         //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth()})
         //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: this.getCarouselWidth(), duration: 0})
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth(), opacity: 1,}, {x: -this.getCarouselWidth(), duration: 0.5, ease: "strong.inOut"})
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth, opacity: 1,}, {x: -this.getCarouselWidth, duration: 0.5, ease: "strong.inOut"})
       } else {
         //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth()})
         //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: this.getCarouselWidth(), duration: 0})
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth(), opacity: 1}, {x: -this.getCarouselWidth(), duration: 0.5, ease: "strong.inOut"})
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth, opacity: 1}, {x: -this.getCarouselWidth, duration: 0.5, ease: "strong.inOut"})
       }
       console.log('gsaping to show '+ imgNumber.toString())
     },
-    hideImage(imgNumber) {
-      if (this.pagingRequire) {
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
-        //gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), duration: 0.5, ease: "none"})
-      } else {
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: -this.getCarouselWidth()},{x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
-        //gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), duration: 0.5, ease: "none"})
-      }
-    },
-    returnBack(imgNumber) {
-      console.log('returning back')
-      if (this.pagingRequire) {
-        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: this.getCarouselWidth(), duration: 0, delay: 1, ease: "none"})
-      } else {
-        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: this.getCarouselWidth(), duration: 0, delay: 1, ease: "none"})
-      }
-    }
   },
   mounted() {
     this.showImage(this.currentImageIndex)

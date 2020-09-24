@@ -25,7 +25,7 @@ name: "container",
     overflow: hidden;
     transition: all ease .5s;
     &__image {
-      height: 120%;
+      height: 100%;
       width: auto;
       opacity:0.7;
       -moz-opacity:0.7;
