@@ -5,7 +5,7 @@
     </div>
     <div class="category__button">
       <p>{{ catName }}</p>
-      <img class="category__button--img" alt="show" src="/next-button/next-button-black.svg">
+      <!--<img class="category__button--img" alt="show" src="/next-button/next-button-black.svg">-->
     </div>
   </div>
 </template>
@@ -29,28 +29,31 @@ export default {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    min-height: 300px;
     &__image-container {
       height: 250px;
       display: flex;
     }
     &__image {
       margin: auto;
-      width: 80%;
+      width: 100%;
       height: auto;
     }
     &__button {
       margin-bottom: 10px;
+      padding: 5px;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      &--img {
-        margin-left: 5px;
-      }
+      font-size: 25px;
+      font-weight: 400;
+      // &--img {
+      //   margin-left: 5px;
+      // }
     }
   }
+  /*
   @media (max-width: $smallScreen) {
     .category {
       &__image {
@@ -58,4 +61,5 @@ export default {
       }
     }
   }
+   */
 </style>

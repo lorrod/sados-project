@@ -34,13 +34,14 @@ export default {
 
 <style lang="scss">
   .information {
-    font-weight: 600;
+    font-weight: 400;
     // width: 100%;
     // height: 100%;
     &__header {
       margin-bottom: 20px;
       &--title{
         font-size: 45px;
+        font-weight: 500;
       }
       &--date {
         display: flex;
@@ -49,7 +50,7 @@ export default {
     }
     &__header {
       &--bolder {
-        font-weight: 600;
+        font-weight: 500;
       }
     }
     &__numbers {

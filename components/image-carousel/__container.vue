@@ -64,8 +64,8 @@ name: "container",
   },
   watch: {
     currentImageIndex: function (newIndex, oldIndex) {
-      this.hideImage(oldIndex)
       this.showImage(newIndex)
+      this.hideImage(oldIndex)
       this.returnBack(oldIndex)
     }
   },

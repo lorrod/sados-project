@@ -65,6 +65,7 @@ export default {
     &__title {
       margin-bottom: 20px;
       font-size: 45px;
+      font-weight: 500;
     }
     &__input {
       border: none;

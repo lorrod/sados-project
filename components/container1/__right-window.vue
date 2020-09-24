@@ -57,8 +57,8 @@ name: "rightWindow",
         //height: 24px;
       }
       &--href {
-        font-size: 14px;
-        font-weight: bold;
+        font-size: 15px;
+        font-weight: 500;
         margin-left: 30px;
         text-decoration: none;
         color: rgb(30,30,30);

@@ -20,6 +20,7 @@ export default {
 <style lang="scss">
   .container2 {
     height: 100vh;
+    min-height: 650px;
     width: 100vw;
     padding: $marginContent;
     padding-left: $marginContent * 1.5;

@@ -2,7 +2,7 @@
   <div class="share-information">
     <div>
       <div class="share-information__head">
-        <h3>Мы предлагаем</h3>
+        <p>Мы предлагаем</p>
       </div>
       <br>
       <br>
@@ -45,17 +45,18 @@ export default {
     background-color: white;
     &__head {
       margin-bottom: 20px;
-      font-size: 45px;
+      font-size: 60px;
     }
     &__text {
       font-size: 18px;
-      font-weight: 600;
+      //font-weight: 600;
     }
     &__button-about {
       display: flex;
       align-items: center;
-      font-size: 24px;
-      font-weight: bold;
+      margin: 10px 10px 10px 0;
+      font-size: 34px;
+      //font-weight: 500;
       &--img {
         margin-left: 27px;
       }
@@ -64,11 +65,13 @@ export default {
       display: flex;
       //align-items: center;
       width: fit-content;
-      //margin: 30px auto 30px auto;
+      margin: 10px 10px 10px 0;
       background-color: rgb(235,233,224);
       border-radius: 5px;
       padding: 20px 40px 20px 40px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: normal;
       &--img {
         margin-left: 10px;
         width: 16px;
