@@ -26,7 +26,7 @@ name: "rightWindow",
     imgCarousel,
   },
   computed: mapState({
-    shownImageIndexPrimary: state => state.shownImageIndexPrimary,
+    shownImageIndexPrimary: state => state.shownImageIndex,
   }),
 }
 </script>

@@ -6,9 +6,6 @@
     <container2 :class="showSecond"/>
     <container3 :class="showThird"/>
     <toTopButton class-name="container"/>
-    <div class="test">
-      <!--<imageCarousel :image-data="['excavator', 'excavator2', 'loader-machine']"/>-->
-    </div>
   </div>
 </template>
 
@@ -19,7 +16,6 @@ import Container2 from "@/components/container2/container"
 import Container3 from "@/components/container3/container"
 import toTopButton from "@/components/to-top-button/to-top-button"
 import imageCarousel from "@/components/image-carousel/__container"
-
 export default {
   components: {
     Container,
@@ -27,7 +23,7 @@ export default {
     Container3,
     toTopButton,
     menubar,
-    imageCarousel
+    imageCarousel,
   },
   data() {
     return {
@@ -81,6 +77,7 @@ export default {
 </script>
 
 <style lang="scss">
+
  .mainConteiner{
     overflow-x: hidden;// on MacOS Chrome and Safari dont require
     font-family: "Graphik LCG"; /* this was it */
@@ -88,10 +85,7 @@ export default {
      z-index: 50;
    }
  }
- .test {
-   width: 400px;
-   height: 600px;
- }
+
 
  @media (min-width: $mediumScreen) {
    .mainConteiner {

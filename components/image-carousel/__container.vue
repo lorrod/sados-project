@@ -38,23 +38,11 @@ name: "container",
   },
   computed: {
     ...mapState({
-    shownImageIndexPrimary: state => state.shownImageIndexPrimary,
-    arrayLength (state) {
-      return state.imageArray.length
-    },
-    imageArray(state) {
-      if (this.pagingRequire) {
-        return state.imageArray.slice(0, -1)
-      } else {
-        return state.imageArray
-      }
-    },
-    classPriority () {
-      if (this.pagingRequire) {
-        return 'primary'
-      }
-      return 'general'
-      },
+    shownImageIndexPrimary: state => state.shownImageIndex,
+    arrayLength: state => state.imageArray.length,
+
+    imageArray: state => state.imageArray,
+
     }),
     getCarouselWidth() {
       //console.log(this.$refs.carouselWindow.clientWidth)
@@ -75,87 +63,6 @@ name: "container",
       }
     }
   },
-  watch: {
-    currentImageIndex: function (newIndex, oldIndex) {
-      //this.showImage(newIndex)
-      //this.hideImage(oldIndex)
-      //this.returnBack(oldIndex)
-      //this.timeline.kill()
-      /*
-      if (newIndex > oldIndex) {
-        this.nextImage(newIndex, oldIndex)
-      } else if (newIndex === 0 && oldIndex === 4) {
-        this.nextImage(newIndex, oldIndex)
-      } else {
-        this.previousImage(newIndex, oldIndex)
-      }
-      
-       */
-      //this.nextImage(newIndex, oldIndex)
-    }
-  },
-  methods: {
-    nextImage(nextNumber, prevNumber) {
-
-      if (this.pagingRequire) {
-        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_primary',
-            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_primary'
-        this.timeline
-          .addLabel("begin")
-          // .set(idNext, {x: this.getCarouselWidth})
-          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5}, "begin")
-          .fromTo(idNext, {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
-      } else {
-        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_general',
-            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_general'
-
-        this.timeline
-          .addLabel("begin")
-          // .set(idNext, {x: this.getCarouselWidth})
-          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5}, "begin")
-          .fromTo(idNext, {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
-      }
-    },
-    previousImage(nextNumber, prevNumber) {
-      if (this.pagingRequire) {
-        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_primary',
-            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_primary'
-
-        this.timeline
-          .addLabel("begin")
-          // .set(idNext, {x: -2*this.getCarouselWidth})
-          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5}, "begin")
-          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
-
-      } else {
-        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_general',
-            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_general'
-
-        this.timeline
-          .addLabel("begin")
-          // .set(idNext, {x: -2*this.getCarouselWidth})
-          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5}, "begin")
-          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
-      }
-    },
-    showImage(imgNumber) {
-      if (this.pagingRequire) {
-        //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth()})
-        //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: this.getCarouselWidth(), duration: 0})
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth, opacity: 1,}, {x: -this.getCarouselWidth, duration: 0.5, ease: "circ.in"})
-      } else {
-        //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth()})
-        //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: this.getCarouselWidth(), duration: 0})
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth, opacity: 1}, {x: -this.getCarouselWidth, duration: 0.5, ease: "circ.in"})
-      }
-      console.log('gsaping to show '+ imgNumber.toString())
-    },
-  },
-  mounted() {
-    this.showImage(this.currentImageIndex)
-  },
-  created() {
-  }
 }
 </script>
 
