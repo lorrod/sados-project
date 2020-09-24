@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const store = () =>
   new Vuex.Store({
   state: {
-    imageArray: ['excavator', 'excavator3', 'excavator4', 'katok', 'loader-machine2'],
+    imageArray: ['excavator', 'excavator3', 'excavator4', 'katok', 'excavator'],
     shownImageIndexPrimary: 0,
     shownImageIndexGeneral: 1,
     },

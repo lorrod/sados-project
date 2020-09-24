@@ -17,7 +17,7 @@ name: "paging",
   computed: mapState({
     shownImageIndexPrimary: state => state.shownImageIndexPrimary,
     arrayLength (state) {
-      return state.imageArray.length
+      return state.imageArray.length-1
     },
   }),
   methods: {

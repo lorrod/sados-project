@@ -6,7 +6,7 @@
       :key="key">
         <imageDiv
           :image-name="name"
-          :id="'image-'+name+'_'+classPriority"
+          :style="{ 'margin-left': '-'+(100 * currentImageIndex)+'%' }"
         />
       </div>
       <paging
@@ -23,8 +23,8 @@ import imageDiv from "./__image"
 import paging from "./__paging"
 import { gsap } from 'gsap'
 import { mapState } from 'vuex'
-let tl = gsap.timeline()
 
+let tl = gsap.timeline()
 export default {
 name: "container",
   components: {
@@ -42,7 +42,13 @@ name: "container",
     arrayLength (state) {
       return state.imageArray.length
     },
-    imageArray: state => state.imageArray,
+    imageArray(state) {
+      if (this.pagingRequire) {
+        return state.imageArray.slice(0, -1)
+      } else {
+        return state.imageArray
+      }
+    },
     classPriority () {
       if (this.pagingRequire) {
         return 'primary'
@@ -91,9 +97,9 @@ name: "container",
       if (this.pagingRequire) {
         let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_primary',
             idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_primary'
-        
         this.timeline
           .addLabel("begin")
+          // .set(idNext, {x: this.getCarouselWidth})
           .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5}, "begin")
           .fromTo(idNext, {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
       } else {
@@ -102,6 +108,7 @@ name: "container",
 
         this.timeline
           .addLabel("begin")
+          // .set(idNext, {x: this.getCarouselWidth})
           .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5}, "begin")
           .fromTo(idNext, {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
       }
@@ -113,8 +120,9 @@ name: "container",
 
         this.timeline
           .addLabel("begin")
-          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
+          // .set(idNext, {x: -2*this.getCarouselWidth})
           .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5}, "begin")
+          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
 
       } else {
         let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_general',
@@ -122,19 +130,20 @@ name: "container",
 
         this.timeline
           .addLabel("begin")
-          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
+          // .set(idNext, {x: -2*this.getCarouselWidth})
           .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5}, "begin")
+          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
       }
     },
     showImage(imgNumber) {
       if (this.pagingRequire) {
         //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth()})
         //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: this.getCarouselWidth(), duration: 0})
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth, opacity: 1,}, {x: -this.getCarouselWidth, duration: 0.5, ease: "strong.inOut"})
+        this.timeline.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth, opacity: 1,}, {x: -this.getCarouselWidth, duration: 0.5, ease: "circ.in"})
       } else {
         //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth()})
         //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: this.getCarouselWidth(), duration: 0})
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth, opacity: 1}, {x: -this.getCarouselWidth, duration: 0.5, ease: "strong.inOut"})
+        this.timeline.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth, opacity: 1}, {x: -this.getCarouselWidth, duration: 0.5, ease: "circ.in"})
       }
       console.log('gsaping to show '+ imgNumber.toString())
     },
@@ -158,17 +167,15 @@ name: "container",
     height: 100%;
     position: relative;
     &__images {
-      /*
       display: flex;
       margin: 0 auto;
-       */
       width: 100%;
       height: 100%;
       overflow: hidden;
     }
     &__image {
-      position:absolute;
-      right: -100%;
+      //position:absolute;
+      //right: -100%;
       width: 100%;
       height: 100%;
     }
