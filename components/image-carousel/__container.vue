@@ -21,8 +21,9 @@
 <script>
 import imageDiv from "./__image"
 import paging from "./__paging"
-import { TimelineLite } from 'gsap'
+import { gsap } from 'gsap'
 import { mapState } from 'vuex'
+let tl = gsap.timeline()
 
 export default {
 name: "container",
@@ -32,7 +33,7 @@ name: "container",
   },
   data() {
     return {
-      timeline: new TimelineLite(),
+      timeline: tl,
     }
   },
   computed: {
@@ -73,7 +74,7 @@ name: "container",
       //this.showImage(newIndex)
       //this.hideImage(oldIndex)
       //this.returnBack(oldIndex)
-      this.timeline.kill()
+      //this.timeline.kill()
       if (newIndex > oldIndex) {
         this.nextImage(newIndex, oldIndex)
       } else if (newIndex === 0 && oldIndex === 4) {
@@ -88,45 +89,41 @@ name: "container",
     nextImage(nextNumber, prevNumber) {
 
       if (this.pagingRequire) {
-        // bring image to right position
-        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_primary',  {x: this.getCarouselWidth, duration: 0, ease: "none"})
-
-        // from right to center image
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_primary', {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5})
-
-        // from center to left image
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: -this.getCarouselWidth}, {x: -2*this.getCarouselWidth, duration: 0.5})
+        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_primary',
+            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_primary'
+        
+        this.timeline
+          .addLabel("begin")
+          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5}, "begin")
+          .fromTo(idNext, {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
       } else {
-        // bring image to right position
-        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_general',  {x: this.getCarouselWidth, duration: 0, ease: "none"})
+        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_general',
+            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_general'
 
-        //from right to left image
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_general', {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5})
-
-        // from center to left
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5})
+        this.timeline
+          .addLabel("begin")
+          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5}, "begin")
+          .fromTo(idNext, {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
       }
     },
     previousImage(nextNumber, prevNumber) {
       if (this.pagingRequire) {
-        // bring image to left position
-        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_primary',  {x: -2*this.getCarouselWidth, duration: 0, ease: "none"})
+        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_primary',
+            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_primary'
 
-        //from left to center image
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_primary', {x: -2*this.getCarouselWidth, duration: 0.5}, {x: -this.getCarouselWidth, duration: 0.5})
+        this.timeline
+          .addLabel("begin")
+          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
+          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5}, "begin")
 
-        // from center to right
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5})
       } else {
-        // bring image to left position
-        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_general',  {x: -2*this.getCarouselWidth, duration: 0, ease: "none"})
+        let idPrev = "#image-"+this.$store.state.imageArray[prevNumber]+'_general',
+            idNext = "#image-"+this.$store.state.imageArray[nextNumber]+'_general'
 
-        //from left to center image
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_general', {x: -2*this.getCarouselWidth, duration: 0.5}, {x: -this.getCarouselWidth, duration: 0.5})
-
-        // from center to right
-        this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5})
-
+        this.timeline
+          .addLabel("begin")
+          .fromTo(idNext, {x: -2*this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5}, "")
+          .fromTo(idPrev,  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5}, "begin")
       }
     },
     showImage(imgNumber) {
@@ -171,7 +168,7 @@ name: "container",
     }
     &__image {
       position:absolute;
-      right:-100%;
+      right: -100%;
       width: 100%;
       height: 100%;
     }

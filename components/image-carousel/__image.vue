@@ -13,7 +13,7 @@ name: "container",
       default() {
         return 'excavator'
       }
-    }
+    },
   }
 }
 </script>
