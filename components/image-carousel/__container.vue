@@ -81,6 +81,7 @@ name: "container",
       //this.hideImage(oldIndex)
       //this.returnBack(oldIndex)
       //this.timeline.kill()
+      /*
       if (newIndex > oldIndex) {
         this.nextImage(newIndex, oldIndex)
       } else if (newIndex === 0 && oldIndex === 4) {
@@ -88,6 +89,8 @@ name: "container",
       } else {
         this.previousImage(newIndex, oldIndex)
       }
+      
+       */
       //this.nextImage(newIndex, oldIndex)
     }
   },
