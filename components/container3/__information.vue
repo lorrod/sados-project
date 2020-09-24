@@ -37,25 +37,31 @@ export default {
     font-weight: 400;
     // width: 100%;
     // height: 100%;
+    padding-right: 100px;
+    padding-left: 60px;
     &__header {
       margin-bottom: 20px;
       &--title{
         font-size: 45px;
-        font-weight: 500;
+        font-weight: 400;
       }
       &--date {
         display: flex;
         white-space: pre;
+        padding-top: 5px;
+        font-size: 20px;
       }
     }
     &__header {
       &--bolder {
-        font-weight: 500;
+        font-weight: 400;
       }
     }
     &__numbers {
       margin-bottom: 60px;
+      font-size: 22px;
       &--rows {
+        padding: 5px 0 5px 0;
         display: flex;
         align-items: center;
       }
@@ -70,6 +76,15 @@ export default {
       font-size: 30px;
       font-weight: 600;
       border-bottom: 1px solid rgb(154,140,123);
+    }
+  }
+    @media (max-width: $mediumScreen) {
+    .information {
+      &__header {
+        &--date {
+          padding: 0;
+        }
+      }
     }
   }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="image-carousel">
-    <img class="image-carousel__image" :src="'/main-pictures/'+imageName+'.svg'" :alt="imageName">
+    <img
+      class="image-carousel__image"
+      :class="[priorityWindow ? 'image-carousel__image--right': 'image-carousel__image--general']"
+      :src="'/main-pictures/'+imageName+'.svg'" :alt="imageName">
   </div>
 </template>
 
@@ -14,6 +17,13 @@ name: "container",
         return 'excavator'
       }
     },
+    priorityWindow: {
+      // if receive true that means we are on the right image
+      type: Boolean,
+      default() {
+        return false;
+      }
+    }
   }
 }
 </script>
@@ -25,8 +35,14 @@ name: "container",
     overflow: hidden;
     transition: all ease .5s;
     &__image {
-      height: 100%;
-      width: auto;
+      &--right {
+        height: 100%;
+        width: auto;
+      }
+      &--general {
+        height: 100vh;
+        max-width: auto;
+      }
       opacity:0.7;
       -moz-opacity:0.7;
       filter: alpha(opacity=70) black;
@@ -34,4 +50,19 @@ name: "container",
       background-color:#000;
     }
   }
+  @media (max-width: $mediumScreen) {
+  .image-carousel {
+      &__image {
+        &--right {
+          height: 100%;
+          width: auto;
+        }
+
+        &--general {
+          height: 100%;
+          width: auto;
+        }
+      }
+  }
+}
 </style>

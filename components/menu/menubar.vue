@@ -3,7 +3,7 @@
     <div class="menubar--style">
       <div class="menubar__labels">
         <div class="menubar__btn-with-name">
-          <div class="menubar__btn" @click.stop="showContent">
+          <div class="menubar__btn" @click.stop="active = !active">
             <img class="menubar__btn--img" src="/menu/menu-btn.svg" alt="mail">
           </div>
           <div class="menubar__company">
@@ -18,8 +18,8 @@
         </div>
       </div>
     </div>
-    <div class="menubar__content" :class="active"  v-click-outside="hideContent">
-      <nav class="menubar__options">
+    <div class="menubar__content" :class="[active ? 'menubar__content-active' : '']"  v-click-outside="hideContent">
+      <nav class="menubar__options" :class="[active ? 'menubar__options--active' : '']">
         <a class="menubar__options-href" href="#">Главная</a>
         <a class="menubar__options-href" href="#">Каталог техники</a>
         <a class="menubar__options-href" href="#">Контакты</a>
@@ -41,20 +41,13 @@ export default {
   name: "menubar",
   data() {
     return {
-      active: '',
+      active: false,
     }
   },
   methods: {
-    showContent() {
-      if (this.active === '') {
-        this.active = 'menubar__content-active'
-        return
-      }
-      this.active = ''
-    },
     hideContent() {
-      if (this.active === 'menubar__content-active') {
-        this.active = ''
+      if (this.active === true) {
+        this.active = false
       }
     }
   }
@@ -68,13 +61,14 @@ export default {
   &--style {
     position: relative;
     z-index: 10000;
-    background-color: rgb(238,236,231);
+    background-color: #FFFFFF;
     width: $menuWidth;
     height: 100vh;
   }
   &__labels {
     height: 100%;
     display: flex;
+    color: #1F1F1F;
     flex-direction: column;
     justify-content: space-between;
   }
@@ -97,6 +91,7 @@ export default {
     left: 0;
     top: 0;
     width: 40%;
+    min-width: 450px;
     height: 100vh;
     z-index: 99;
     background-color: rgb(31,31,31);
@@ -134,12 +129,38 @@ export default {
     display: flex;
     height: 50%;
     flex-direction: column;
+    //transition: 1s;
+    //opacity: 0;
+    //transition: opacity 2s;
+    //transform: translateX(-100%);
+    &--active {
+	    -webkit-animation: slide-right 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+	        animation: slide-right 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+    }
     &-href{
       margin-top: 20px;
       color: rgb(250,250,250);
       text-decoration: none;
-      font-weight: 900;
-      font-size: 25px;
+      font-weight: 400;
+      font-size: 32px;
+      transition-property: transform;
+      transition: 0.25s ease;
+      width: max-content;
+      &::after {
+        content: '';
+        border-top: 1px solid #fff;
+        width: 100%;
+        position: absolute;
+        display: block;
+        transform: rotateY(90deg);
+        transition:transform 0.25s linear;
+      }
+      &:hover {
+        transform: scale(1);
+      }
+      &:hover::after {
+        transform: rotate(0deg);
+      }
     }
   }
   &__company {
@@ -149,7 +170,7 @@ export default {
     margin-top: 150px;
     font-size: 25px;
     &--brand {
-      font-weight: bold;
+      font-weight: 600;
       margin-left: 5px;
     }
   }
@@ -165,9 +186,32 @@ export default {
   }
 }
 
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(-30);
+            transform: translateX(-30);
+  }
+  100% {
+    -webkit-transform: translateX(30px);
+            transform: translateX(30px);
+  }
+}
+
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+  }
+}
+
 @media (max-width: $mediumScreen) {
   .menubar {
     min-width: 340px;
+    z-index: 5000;
     &--style {
       background-color: rgb(238,236,231);
       width: 100vw;
@@ -196,12 +240,16 @@ export default {
     display: flex;
     height: 50%;
     flex-direction: column;
+    &--active {
+	    -webkit-animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+	        animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+    }
     &-href{
       margin-bottom: 20px;
       color: rgb(250,250,250);
       text-decoration: none;
-      font-weight: 900;
-      font-size: 25px;
+      font-weight: 400;
+      font-size: 38px;
       }
     }
     &__contacts {

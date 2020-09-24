@@ -5,6 +5,7 @@
       v-for="(name, key) in imageArray"
       :key="key">
         <imageDiv
+          :priorityWindow="pagingRequire"
           :image-name="name"
           :style="{ 'margin-left': '-'+(100 * currentImageIndex)+'%' }"
         />

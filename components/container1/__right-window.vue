@@ -70,6 +70,11 @@ name: "rightWindow",
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      margin: auto;
+      height: 30%;
+      min-height: 200px;
+    }
+    &__text {
     }
     &__warning {
       font-size: 80px;
@@ -103,7 +108,6 @@ name: "rightWindow",
         height: auto;
       }
       &__information {
-        margin: auto;
         padding: 10px;
         height: 70%;
       }
