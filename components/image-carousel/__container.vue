@@ -89,10 +89,10 @@ name: "container",
     },
     hideImage(imgNumber) {
       if (this.pagingRequire) {
-        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
         //gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), duration: 0.5, ease: "none"})
       } else {
-        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: -this.getCarouselWidth()},{x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
         //gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), duration: 0.5, ease: "none"})
       }
     },
