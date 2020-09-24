@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-container">
+  <div class="carousel-container" ref="carouselWindow">
     <div class="carousel-container__images">
       <div class="carousel-container__image"
       v-for="(name, key) in imageArray"
@@ -46,7 +46,7 @@ name: "container",
         return 'primary'
       }
       return 'general'
-    }
+    },
   }),
   props: {
     pagingRequire: {
@@ -66,24 +66,44 @@ name: "container",
     currentImageIndex: function (newIndex, oldIndex) {
       this.hideImage(oldIndex)
       this.showImage(newIndex)
+      this.returnBack(oldIndex)
     }
   },
   methods: {
+    getCarouselWidth() {
+      console.log(this.$refs.carouselWindow.clientWidth)
+      return this.$refs.carouselWindow.clientWidth
+    },
     showImage(imgNumber) {
+      this.getCarouselWidth()
       if (this.pagingRequire) {
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: '100%'}, {x: '-100%'})
+        //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth()})
+        //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: this.getCarouselWidth(), duration: 0})
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: this.getCarouselWidth(), opacity: 1,}, {x: -this.getCarouselWidth(), duration: 0.5, ease: "strong.inOut"})
       } else {
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: '100%'}, {x: '-100%'})
+        //gsap.set("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth()})
+        //gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: this.getCarouselWidth(), duration: 0})
+        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: this.getCarouselWidth(), opacity: 1}, {x: -this.getCarouselWidth(), duration: 0.5, ease: "strong.inOut"})
       }
       console.log('gsaping to show '+ imgNumber.toString())
     },
     hideImage(imgNumber) {
       if (this.pagingRequire) {
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: '-100%'}, {x: '+100%'})
+        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
+        //gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_primary', {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), duration: 0.5, ease: "none"})
       } else {
-        gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: '-100%'}, {x: '+100%'})
+        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: -2*this.getCarouselWidth(), opacity: 0, duration: 0.5, delay: 0.1, ease: "strong.inOut"})
+        //gsap.fromTo("#image-"+this.$store.state.imageArray[imgNumber]+'_general', {x: -this.getCarouselWidth()}, {x: -2*this.getCarouselWidth(), duration: 0.5, ease: "none"})
       }
     },
+    returnBack(imgNumber) {
+      console.log('returning back')
+      if (this.pagingRequire) {
+        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_primary',  {x: this.getCarouselWidth(), duration: 0, delay: 1, ease: "none"})
+      } else {
+        gsap.to("#image-"+this.$store.state.imageArray[imgNumber]+'_general',  {x: this.getCarouselWidth(), duration: 0, delay: 1, ease: "none"})
+      }
+    }
   },
   mounted() {
     this.showImage(this.currentImageIndex)
@@ -92,7 +112,7 @@ name: "container",
 </script>
 
 <style lang="scss">
-  .checkingButton {
+  .test {
     position: fixed;
     bottom: 40px;
     left: 40px;

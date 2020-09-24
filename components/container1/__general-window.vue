@@ -36,14 +36,15 @@ export default {
   .general-window {
     width: 100%;
     height: 100%;
-    //background: rgb(50,45,36);
-    //background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
+    background: rgb(50,45,36);
+    background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
     //background-image: url(/main-pictures/excavator.svg);
     //background-size: cover;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     position: relative;
+    z-index:-55;
     &__background-image{
       overflow: hidden;
       position:absolute;
@@ -60,11 +61,13 @@ export default {
       font-size: 70px;
       font-weight: bold;
       max-width: $marginContent * 8;
+      z-index:-40;
     }
     &__mouse {
       width: 100%;
       display: flex;
       margin-bottom: $marginContent / 2;
+      z-index: 0;
       &-img {
         // width: 24px;
         // height: 24px;

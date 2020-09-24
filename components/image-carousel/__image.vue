@@ -27,6 +27,11 @@ name: "container",
     &__image {
       height: 120%;
       width: auto;
+      opacity:0.7;
+      -moz-opacity:0.7;
+      filter: alpha(opacity=70) black;
+      -khtml-opacity: 0.7;
+      background-color:#000;
     }
   }
 </style>

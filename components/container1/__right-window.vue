@@ -39,6 +39,8 @@ name: "rightWindow",
     &__image-container {
       height: 66%;
       overflow: hidden;
+      background: rgb(50,45,36);
+      background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
     }
     &__image {
       height: 100%;
