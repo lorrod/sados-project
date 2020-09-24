@@ -59,7 +59,7 @@ export default {
       margin-top: $marginContent * 1.2;
       margin-right: $marginContent;
       font-size: 70px;
-      font-weight: bold;
+      font-weight: 400;
       max-width: $marginContent * 8;
       z-index:-40;
     }
