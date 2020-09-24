@@ -73,33 +73,49 @@ name: "container",
       //this.showImage(newIndex)
       //this.hideImage(oldIndex)
       //this.returnBack(oldIndex)
-      /*
       if (newIndex > oldIndex) {
         this.nextImage(newIndex, oldIndex)
       } else {
         this.previousImage(newIndex, oldIndex)
       }
-      */
-      this.nextImage(newIndex, oldIndex)
+      //this.nextImage(newIndex, oldIndex)
     }
   },
   methods: {
     nextImage(nextNumber, prevNumber) {
 
       if (this.pagingRequire) {
+        // bring image to right position
+        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_primary',  {x: this.getCarouselWidth, duration: 0, ease: "none"})
         // from right to center image
         this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_primary', {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5})
         // from center to left image
         this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: -this.getCarouselWidth}, {x: -2*this.getCarouselWidth, duration: 0.5})
-        // return image to right position
-        this.timeline.to("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: this.getCarouselWidth, duration: 0, delay: 1, ease: "none"})
       } else {
+        // bring image to right position
+        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_general',  {x: this.getCarouselWidth, duration: 0, ease: "none"})
         //from right to left image
         this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_general', {x: this.getCarouselWidth}, {x: -this.getCarouselWidth, duration: 0.5})
         // from center to left
         this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: -this.getCarouselWidth},{x: -2*this.getCarouselWidth, duration: 0.5})
-        // return image to right position
-        this.timeline.to("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: this.getCarouselWidth, duration: 0, delay: 1, ease: "none"})
+      }
+    },
+    previousImage(nextNumber, prevNumber) {
+      if (this.pagingRequire) {
+        // bring image to left position
+        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_primary',  {x: -2*this.getCarouselWidth, duration: 0, ease: "none"})
+        //from left to center image
+        this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_primary', {x: -2*this.getCarouselWidth, duration: 0.5}, {x: -this.getCarouselWidth, duration: 0.5})
+        // from center to right
+        this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_primary',  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5})
+      } else {
+        // bring image to left position
+        this.timeline.to("#image-"+this.$store.state.imageArray[nextNumber]+'_general',  {x: -2*this.getCarouselWidth, duration: 0, ease: "none"})
+        //from left to center image
+        this.timeline.fromTo("#image-"+this.$store.state.imageArray[nextNumber]+'_general', {x: -2*this.getCarouselWidth, duration: 0.5}, {x: -this.getCarouselWidth, duration: 0.5})
+        // from center to right
+        this.timeline.fromTo("#image-"+this.$store.state.imageArray[prevNumber]+'_general',  {x: -this.getCarouselWidth},{x: this.getCarouselWidth, duration: 0.5})
+
       }
     },
     showImage(imgNumber) {
