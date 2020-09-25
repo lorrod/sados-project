@@ -58,8 +58,14 @@ export default {
 
     function setSection(newSection) {
       if (newSection !== currentSection) {
-        gsap.to(currentSection, {scale: 0.8, autoAlpha: 0})
-        gsap.to(newSection, {scale: 1, autoAlpha: 1})
+        if (sections.indexOf(newSection) > sections.indexOf(currentSection)) {
+          gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '-300vh', opacity: 0})
+          gsap.fromTo(newSection, {y: '300vh', opacity: 0}, {y:0, opacity: 1})
+        } else {
+          gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '300vh', opacity: 0})
+          gsap.fromTo(newSection, {y: '-300vh', opacity: 0}, {y:0, opacity: 1})
+        }
+
         currentSection = newSection
       }
     }
@@ -89,7 +95,7 @@ export default {
       left: 0;
       &:not(.mainConteiner__section--shown) {
         opacity: 0;
-        visibility: hidden;
+        bottom: 300vh;
         transform: scale(0.8);
       }
       &--shown {
@@ -98,21 +104,23 @@ export default {
       }
     }
  }
- /*
-:not(.mainConteiner__section--shown) {
-        opacity: 0;
-        visibility: hidden;
-        transform: scale(0.8);
-      }
-
-  */
 
  @media (min-width: $mediumScreen) {
    .mainConteiner {
+        &__section {
+          &--shown {
+            left: 0;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+     /*
      &__container {
        opacity: 0;
        width: 100vw;
        position: block;
+
        &--shown {
          &--main {
            transform: translateX(-3%);
@@ -129,8 +137,8 @@ export default {
          transition: 1s;
        }
      }
-   }
- }
+
+        */
 
 </style>
 
