@@ -87,6 +87,12 @@ export default {
     overflow-x: hidden;// on MacOS Chrome and Safari dont require
     font-family: "Graphik LCG"; /* this was it */
     margin-bottom: 300vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;  /* Safari and Chrome */
+    }
     &__section {
       position: fixed;
       width: 100%;
@@ -104,8 +110,7 @@ export default {
       }
     }
  }
-
- @media (min-width: $mediumScreen) {
+ @media (max-width: $mediumScreen) {
    .mainConteiner {
         &__section {
           &--shown {
@@ -115,6 +120,7 @@ export default {
         }
       }
     }
+
      /*
      &__container {
        opacity: 0;
