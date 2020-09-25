@@ -50,15 +50,47 @@ export default {
      }
    }
  }
-
+/*
+@mixin white-gradient {
+	background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+}
+*/
  @media (max-width: $smallScreen) {
    .categories {
+     display: flex;
+     flex-wrap: nowrap;
+     position: relative;
+     // width: 960px; ????
+     	&::before,
+      &::after {
+        //@include white-gradient;
+        content: "";
+        height: 100px;
+        position: absolute;
+        width: 200px;
+        z-index: 2;
+      }
+
+    animation: scroll 15s linear infinite;
+      width: calc(350px * 6);
+     left: 135%;
      &__category{
-       width: 100%;
-       height: 45%;
-       border: 1px solid rgb(216,216,214);
-       margin:-1px 0 0 -1px; // used for collapsing double lines
+       min-width: 200px;
+       max-width: 250px;
+       height: 10px;
+       border: none;
+       margin:-1px 100px 0 100px;
      }
    }
  }
+
+
+
+// Animation of scrolling vechicle
+@keyframes scroll {
+	0% { transform: translateX(0); }
+	100% { transform: translateX(calc(-350px * 8))}
+}
+
+
 </style>

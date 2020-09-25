@@ -53,13 +53,12 @@ export default {
       // }
     }
   }
-  /*
-  @media (max-width: $smallScreen) {
-    .category {
-      &__image {
-        width: 100%;
-      }
-    }
-  }
-   */
+
+ @media (max-width: $smallScreen) {
+   .category {
+     &__button {
+      font-size: 20px;
+     }
+   }
+ }
 </style>

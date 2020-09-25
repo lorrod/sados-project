@@ -55,29 +55,10 @@ name: "paging",
 </script>
 
 <style scoped lang="scss">
-/*
-    .circle-svg{
-      //border-radius:50%;
-      transform: rotate(-90deg);
-      z-index: 500;
-      }
-      .circle-svg__circle{
-          fill:#fff;
-          stroke-dasharray:100.53 100;
-      }
-       .circle-svg__border {
-          fill:none;
-          stroke:#fff;
-          stroke-width:1;
-          stroke-dasharray:0 100;
-          animation: 5s linear slice ;
-          animation-fill-mode:forwards
-      }
 
- */
-      @keyframes slice{
-          to{stroke-dasharray:100.53 100;}
-      }
+    @keyframes slice{
+        to{stroke-dasharray:100.53 100;}
+    }
 
   .paging {
     z-index: 30000;
@@ -110,6 +91,13 @@ name: "paging",
           //border: whitesmoke double 1px;
           //border-radius: 50%;
         }
+      }
+    }
+  }
+  @media (max-width: $smallScreen) {
+    .paging {
+      &__container {
+        margin: 2px;
       }
     }
   }

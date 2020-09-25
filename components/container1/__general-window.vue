@@ -85,6 +85,7 @@ export default {
   .general-window {
       &__slogan {
         margin-left: $marginContent / 2;
+        font-size: 45px;
       }
       &__mouse {
         display: none;

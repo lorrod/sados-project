@@ -47,7 +47,7 @@ name: "container",
           height: 100vh;
           min-width: 100vw / 5;
         }
-        
+
          */
       }
       opacity:0.7;

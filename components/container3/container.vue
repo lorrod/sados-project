@@ -33,7 +33,10 @@ export default {
    @media (max-width: $mediumScreen) {
    .container3 {
       flex-direction: column-reverse;
-     align-items: flex-start;
+     justify-content: space-around;
+     align-items: center;
+    padding: 0;
+    padding-left: 0;
      &__info {
        margin: $marginContent 0 0 0;
      }
@@ -41,9 +44,7 @@ export default {
  }
   @media (max-width: $smallScreen) {
    .container3 {
-    padding-left: $marginContent / 2;
-    padding-top: $marginContent * 6;
-     margin-top: $marginContent;
+    //padding-left: $marginContent / 2;
    }
   }
 </style>

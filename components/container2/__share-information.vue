@@ -87,4 +87,15 @@ export default {
       }
     }
   }
+   @media (max-width: $smallScreen) {
+     .share-information {
+       &__button-about {
+         display: none;
+       }
+       &__order-call {
+         display: none;
+       }
+     }
+   }
+
 </style>

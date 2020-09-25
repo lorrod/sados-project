@@ -66,7 +66,6 @@ name: "rightWindow",
     }
     &__information {
       padding: 25px;
-      height: 33%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -110,6 +109,13 @@ name: "rightWindow",
       &__information {
         padding: 10px;
         height: 70%;
+        min-height: 180px;
+      }
+      &__text {
+      font-size: 20px;
+      }
+      &__warning {
+        font-size: 70px;
       }
     }
   }

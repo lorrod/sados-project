@@ -11,10 +11,15 @@
             <p class="menubar__company--brand">САДОС</p>
           </div>
         </div>
-        <div class="menubar__contacts">
+        <div class="menubar__contacts menubar__contacts--desktop">
           <img class="menubar__contacts--img" src="/mobile-phone/mobile-phone-menu.svg" alt="mobile">
           <img class="menubar__contacts--img" src="/phone/phone-menu.svg" alt="phone">
           <img class="menubar__contacts--img" src="/envelope/envelope-menu.svg" alt="mail">
+        </div>
+        <div class="menubar__contacts menubar__contacts--mobile" @click.stop="showModalPhone = true">
+          <img class="menubar__contacts--img"
+               src="/phone/phone-menu.svg"
+               alt="phone">
         </div>
       </div>
     </div>
@@ -33,22 +38,37 @@
         </div>
       </div>
     </div>
+    <modalPhones :show-modal="showModalPhone" @closeModalPhone="closeModalPhone"/>
   </div>
 </template>
 
 <script>
+import modalPhones from '../modal/__show-phone'
 export default {
   name: "menubar",
   data() {
     return {
       active: false,
+      showModalPhone: false
     }
+  },
+  components: {
+    modalPhones
   },
   methods: {
     hideContent() {
       if (this.active === true) {
         this.active = false
+      } else if (this.showModalPhone) {
+        this.showModalPhone = false
       }
+    },
+    closeModalPhone() {
+      console.log('im not working')
+      this.showModalPhone = false
+    },
+    check() {
+      console.log('workin')
     }
   }
 }
@@ -184,6 +204,9 @@ export default {
       margin: 5px auto 5px auto;
       // width: 24px;// strange auto fit width
     }
+    &--mobile {
+      display: none;
+    }
   }
 }
 
@@ -211,7 +234,7 @@ export default {
 
 @media (max-width: $mediumScreen) {
   .menubar {
-    min-width: 340px;
+    //min-width: 340px;
     z-index: 5000;
     &--style {
       background-color: rgb(238,236,231);
@@ -257,21 +280,58 @@ export default {
       flex-direction: row;
       margin-bottom: 0;
       margin-right: 33px;
-    &--img {
-      margin: auto 5px auto 5px;
-      width: 24px;// strange auto fit width
-      height: 24px;
+      &--mobile {
+        display: flex;
+        z-index: 30010;
+      }
+      &--img {
+        margin: auto;
+        width: 30px;// strange auto fit width
+        height: 30px;
+        }
+      &--desktop {
+        display: none;
       }
     }
     &__company {
-    transform: rotate(0deg);
-    display: flex;
-    margin: auto 5px auto 35px;
+      transform: rotate(0deg);
+      display: flex;
+      margin: auto 5px auto 35px;
     }
     &__information {
       &--hr {
         margin-left: $menuMobileHeight + $menuMobileHeight / 4;
         margin-right: $menuMobileHeight + $menuMobileHeight / 4;
+      }
+    }
+  }
+}
+
+@media (max-width: $smallScreen) {
+  .menubar {
+    &__company {
+      margin: auto 3px auto 0px;
+    }
+    &__contacts {
+      margin-right: 15px;
+    &--img {
+        margin: auto 0px auto 3px;
+      }
+    }
+    &__options {
+      margin-top: 0;
+      margin-left: $menuMobileHeight;
+      &-href {
+        font-size: 30px;
+      }
+    }
+    &__information {
+      &--hr {
+        margin-left: $menuMobileHeight;
+        margin-right: $menuMobileHeight * 2;
+      }
+      &--contacts {
+        margin-left: $menuMobileHeight;
       }
     }
   }

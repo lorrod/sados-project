@@ -124,6 +124,7 @@ export default {
  @media (max-width: $mediumScreen) {
    .mainConteiner {
         &__section {
+          //position: static;
           &--shown {
             left: 0;
             padding-left: 0;
@@ -131,7 +132,6 @@ export default {
         }
       }
     }
-
      /*
      &__container {
        opacity: 0;

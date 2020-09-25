@@ -37,12 +37,16 @@ export default {
       height: auto;
       display: flex;
       flex-direction: column;
+      padding: 0 $marginContent * 1.5 0 0;
     }
   }
   @media (max-width: $smallScreen) {
     .container2 {
       padding-top: $marginContent * 1.5;
       padding: 20px;
+      &__categories {
+        //overflow-x: hidden;
+      }
     }
   }
 </style>
