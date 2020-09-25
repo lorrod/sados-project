@@ -31,7 +31,7 @@ export default {
   }),
   watch: {
     shownImage(newIndex, oldIndex) {
-      this.generalIndex = oldIndex
+      this.generalIndex = newIndex
     }
   },
   methods: {

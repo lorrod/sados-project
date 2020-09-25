@@ -42,7 +42,16 @@ name: "container",
     shownImageIndexPrimary: state => state.shownImageIndex,
     arrayLength: state => state.imageArray.length,
 
-    imageArray: state => state.imageArray,
+    imageArray(state) {
+      //return state.imageArray
+      if (this.pagingRequire) {
+        return state.imageArray
+      } else {
+        var arrayForGeneral =  state.imageArray.slice()
+        arrayForGeneral.unshift(arrayForGeneral.pop())
+        return arrayForGeneral
+      }
+    }
 
     }),
     getCarouselWidth() {
