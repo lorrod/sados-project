@@ -2,7 +2,7 @@
   <div class="image-carousel">
     <img
       class="image-carousel__image"
-      :class="[priorityWindow ? 'image-carousel__image--right': 'image-carousel__image--general']"
+      :class="[priorityWindow ? 'image-carousel__image--right': 'image-carousel__image--general', windowIsWider ? 'image-carousel__image--shorter': 'image-carousel__image--wider']"
       :src="'/main-pictures/'+imageName+'.svg'" :alt="imageName">
   </div>
 </template>
@@ -23,6 +23,17 @@ name: "container",
       default() {
         return false;
       }
+    },
+    imageShorter: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    }
+  },
+  computed: {
+    windowIsWider() {
+      return !this.imageShorter
     }
   }
 }
@@ -35,20 +46,13 @@ name: "container",
     overflow: hidden;
     transition: all ease .5s;
     &__image {
-      &--right {
-        height: 100%;
+      &--shorter {
         width: auto;
+        height: 100%;
       }
-      &--general {
-        max-width: auto;
-        height: 110vh;
-        /*
-        @media (min-width: 1600px) and (min-height: 1000px) {
-          height: 100vh;
-          min-width: 100vw / 5;
-        }
-
-         */
+      &--wider {
+        width: 100vw;
+        height: auto;
       }
       opacity:0.7;
       -moz-opacity:0.7;
@@ -58,19 +62,4 @@ name: "container",
     }
   }
 
-  @media (max-width: $mediumScreen) {
-  .image-carousel {
-      &__image {
-        &--right {
-          height: 100%;
-          width: auto;
-        }
-
-        &--general {
-          min-width: 100vw / 5;
-          min-height: 100vh;
-        }
-      }
-  }
-}
 </style>

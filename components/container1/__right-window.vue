@@ -1,7 +1,7 @@
 <template>
   <div class="right-window">
-    <div class="right-window__image-container">
-      <imgCarousel :currentImageIndex="shownImageIndexPrimary" :pagingRequire="true"/>
+    <div class="right-window__image-container" ref="imageSmallContainer">
+      <imgCarousel :currentImageIndex="shownImageIndexPrimary" :pagingRequire="true" :windowWider="widthIsMore"/>
     </div>
     <div class="right-window__information">
       <div class="right-window__text">
@@ -25,9 +25,35 @@ name: "rightWindow",
   components: {
     imgCarousel,
   },
+  data() {
+    return {
+      widthIsMore: true,// image is 1200px*750px  if window is wider than image => true
+    }
+  },
   computed: mapState({
     shownImageIndexPrimary: state => state.shownImageIndex,
   }),
+  methods: {
+    handleResizeImgContainer(event) {
+      if (this.$refs.imageSmallContainer) {
+        if ((this.$refs.imageSmallContainer.clientWidth / this.$refs.imageSmallContainer.clientHeight) < 1.6 ) {
+          this.widthIsMore = false
+          //console.log('setting false')
+        } else {
+          this.widthIsMore = true
+        }
+      }
+    },
+  },
+  mounted() {
+    if ((this.$refs.imageSmallContainer.clientWidth / this.$refs.imageSmallContainer.clientHeight) < 1.6 ) {
+      this.widthIsMore = false
+    }
+    window.addEventListener('resize', this.handleResizeImgContainer)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResizeImgContainer)
+  },
 }
 </script>
 

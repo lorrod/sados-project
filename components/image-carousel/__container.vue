@@ -5,6 +5,7 @@
       v-for="(name, key) in imageArray"
       :key="key">
         <imageDiv
+          :imageShorter="windowWider"
           :priorityWindow="pagingRequire"
           :image-name="name"
           :style="{ 'margin-left': '-'+(100 * currentImageIndex)+'%' }"
@@ -35,6 +36,7 @@ name: "container",
   data() {
     return {
       timeline: tl,
+      widthIsMore: true,// image is 1200px*720px  if window is wider than image => true
     }
   },
   computed: {
@@ -52,12 +54,7 @@ name: "container",
         return arrayForGeneral
       }
     }
-
     }),
-    getCarouselWidth() {
-      //console.log(this.$refs.carouselWindow.clientWidth)
-      return this.$refs.carouselWindow.clientWidth
-    },
   },
   props: {
     pagingRequire: {
@@ -70,6 +67,12 @@ name: "container",
       type: Number,
       default() {
         return 0
+      }
+    },
+    windowWider: {
+      type: Boolean,
+      default() {
+        return true
       }
     }
   },

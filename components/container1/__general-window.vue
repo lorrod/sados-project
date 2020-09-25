@@ -1,8 +1,9 @@
 <template>
-  <div class="general-window">
+  <div class="general-window" ref="imageContainer">
     <imgCarousel class="general-window__background-image"
                  :pagingRequire="false"
                  :currentImageIndex="this.shownImage"
+                 :windowWider="widthIsMore"
                  />
     <div class="general-window__slogan">
       Сдаём в аренду спецтехнику
@@ -23,6 +24,7 @@ export default {
   },
   data() {
     return {
+      widthIsMore: true,// image is 1200px*750px  if window is wider than image => true
     }
   },
   computed: mapState({
@@ -32,8 +34,30 @@ export default {
     scrollNextSection(section) {
       window.scrollTo(0,window.innerHeight);
       //document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
+    },
+    handleResizeImgContainer(event) {
+      if (this.$refs.imageContainer) {
+        if ((this.$refs.imageContainer.clientWidth / this.$refs.imageContainer.clientHeight) < 1.6 ) {
+          this.widthIsMore = false
+          //console.log('setting false')
+        } else {
+          this.widthIsMore = true
+        }
+      }
+    },
+  },
+  mounted() {
+    if ((this.$refs.imageContainer.clientWidth / this.$refs.imageContainer.clientHeight) < 1.6 ) {
+      this.widthIsMore = false
+      console.log(this.$refs.imageContainer.clientWidth)
+      console.log(this.$refs.imageContainer.clientHeight)
+      console.log(this.$refs.imageContainer.clientWidth / this.$refs.imageContainer.clientHeight)
     }
-  }
+    window.addEventListener('resize', this.handleResizeImgContainer)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResizeImgContainer)
+  },
 }
 </script>
 

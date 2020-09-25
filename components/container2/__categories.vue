@@ -64,6 +64,7 @@ export default {
      	&::before,
       &::after {
         //@include white-gradient;
+        bottom: 0;
         content: "";
         height: 100px;
         position: absolute;

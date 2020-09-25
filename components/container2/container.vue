@@ -19,8 +19,8 @@ export default {
 
 <style lang="scss">
   .container2 {
-    height: 100vh;
-    min-height: 650px;
+    height: 100%;
+    min-height: 50rem;
     width: 100vw;
     padding: 30px;
     padding-left: $marginContent * 1.5;
@@ -42,10 +42,11 @@ export default {
   }
   @media (max-width: $smallScreen) {
     .container2 {
-      padding-top: $marginContent * 1.5;
-      padding: 20px;
-      &__categories {
-        //overflow-x: hidden;
+      padding: 15px;
+      //padding-top: $marginContent * 1.5;
+      &__info {
+        flex: 1 1 auto;
+
       }
     }
   }

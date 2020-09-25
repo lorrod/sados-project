@@ -72,7 +72,6 @@ export default {
           gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '300vh', opacity: 0, duration: 0.5})
           gsap.fromTo(newSection, {y: '-300vh', opacity: 0}, {y:0, opacity: 1, duration: 0.5})
         }
-
         currentSection = newSection
       }
     }
