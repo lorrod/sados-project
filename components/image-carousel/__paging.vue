@@ -67,14 +67,14 @@ name: "paging",
       justify-content: flex-start;
     }
     &__container {
-      margin: 10px;
+      margin: 5px;
     }
     &__svg {
       transform: rotate(-90deg);
       z-index: 500;
     }
     &__dot {
-      padding: 15px;
+      padding: 10px;
       &__circle{
           fill:#fff;
           stroke-dasharray:100.53 100;
