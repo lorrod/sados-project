@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     toTop(className) {
-      document.querySelector('.'+className).scrollIntoView({block: "start", behavior: "smooth"});
+      window.scrollTo(0,10)
     }
   }
 

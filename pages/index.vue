@@ -4,7 +4,7 @@
     <container class="mainConteiner__section mainConteiner__section--shown" />
     <container2 class="mainConteiner__section" />
     <container3 class="mainConteiner__section" />
-    <toTopButton class-name="container"/>
+    <toTopButton class="mainConteiner__toTopButton" class-name="container" />
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
   },
   data() {
     return {
+      isGeneral: true
     }
   },
   methods: {
@@ -38,6 +39,7 @@ export default {
 
     let sections = gsap.utils.toArray(".mainConteiner__section"),
     currentSection = sections[0];
+    console.log(sections[0])
 
     gsap.defaults({overwrite: 'auto', duration: 0.3})
 
@@ -58,6 +60,11 @@ export default {
 
     function setSection(newSection) {
       if (newSection !== currentSection) {
+        if (sections.indexOf(newSection) != 0) {
+          gsap.to('.mainConteiner__toTopButton', {opacity:1})
+        } else {
+          gsap.to('.mainConteiner__toTopButton', {opacity:0})
+        }
         if (sections.indexOf(newSection) > sections.indexOf(currentSection)) {
           gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '-300vh', opacity: 0, duration: 0.5})
           gsap.fromTo(newSection, {y: '300vh', opacity: 0}, {y:0, opacity: 1, duration: 0.5})
@@ -92,6 +99,9 @@ export default {
     scrollbar-width: none;  /* Firefox */
     &::-webkit-scrollbar {
       display: none;  /* Safari and Chrome */
+    }
+    &__toTopButton {
+      opacity: 0;
     }
     &__section {
       position: fixed;
