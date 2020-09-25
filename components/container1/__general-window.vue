@@ -2,7 +2,7 @@
   <div class="general-window">
     <imgCarousel class="general-window__background-image"
                  :pagingRequire="false"
-                 :currentImageIndex="this.generalIndex"
+                 :currentImageIndex="this.shownImage"
                  />
     <div class="general-window__slogan">
       Сдаём в аренду спецтехнику
@@ -23,20 +23,15 @@ export default {
   },
   data() {
     return {
-      generalIndex: 0
     }
   },
   computed: mapState({
     shownImage: state => state.shownImageIndex,
   }),
-  watch: {
-    shownImage(newIndex, oldIndex) {
-      this.generalIndex = newIndex
-    }
-  },
   methods: {
     scrollNextSection(section) {
-      document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
+      window.scrollTo(0,window.innerHeight);
+      //document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
     }
   }
 }
