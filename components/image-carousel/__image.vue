@@ -42,6 +42,10 @@ name: "container",
       &--general {
         height: 100vh;
         max-width: auto;
+        @media (min-width: 1600px) and (min-height: 1000px) {
+          height: auto;
+          min-width: 100vw / 5;
+        }
       }
       opacity:0.7;
       -moz-opacity:0.7;
@@ -50,6 +54,7 @@ name: "container",
       background-color:#000;
     }
   }
+
   @media (max-width: $mediumScreen) {
   .image-carousel {
       &__image {

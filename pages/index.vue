@@ -101,7 +101,8 @@ export default {
       left: 0;
       &:not(.mainConteiner__section--shown) {
         opacity: 0;
-        bottom: 300vh;
+        z-index: -20;
+        // right: 300px;
         transform: scale(0.8);
       }
       &--shown {

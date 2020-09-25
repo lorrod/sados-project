@@ -80,6 +80,7 @@ name: "paging",
       }
 
   .paging {
+    z-index: 30000;
     &__row {
       display: flex;
       justify-content: flex-start;
