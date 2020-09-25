@@ -59,11 +59,11 @@ export default {
     function setSection(newSection) {
       if (newSection !== currentSection) {
         if (sections.indexOf(newSection) > sections.indexOf(currentSection)) {
-          gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '-300vh', opacity: 0})
-          gsap.fromTo(newSection, {y: '300vh', opacity: 0}, {y:0, opacity: 1})
+          gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '-300vh', opacity: 0, duration: 0.5})
+          gsap.fromTo(newSection, {y: '300vh', opacity: 0}, {y:0, opacity: 1, duration: 0.5})
         } else {
-          gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '300vh', opacity: 0})
-          gsap.fromTo(newSection, {y: '-300vh', opacity: 0}, {y:0, opacity: 1})
+          gsap.fromTo(currentSection, {y: 0, opacity: 1}, {y: '300vh', opacity: 0, duration: 0.5})
+          gsap.fromTo(newSection, {y: '-300vh', opacity: 0}, {y:0, opacity: 1, duration: 0.5})
         }
 
         currentSection = newSection
