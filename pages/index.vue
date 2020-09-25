@@ -1,10 +1,9 @@
 <template>
-  <div class="mainConteiner" v-scroll="handleScroll">
-    <div  v-if="desktop"></div>
+  <div class="mainConteiner">
     <menubar />
-    <container :class="showFirst"/>
-    <container2 :class="showSecond"/>
-    <container3 :class="showThird"/>
+    <container class="mainConteiner__section mainConteiner__section--shown" />
+    <container2 class="mainConteiner__section" />
+    <container3 class="mainConteiner__section" />
     <toTopButton class-name="container"/>
   </div>
 </template>
@@ -16,6 +15,10 @@ import Container2 from "@/components/container2/container"
 import Container3 from "@/components/container3/container"
 import toTopButton from "@/components/to-top-button/to-top-button"
 import imageCarousel from "@/components/image-carousel/__container"
+import { gsap } from 'gsap'
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+
+
 export default {
   components: {
     Container,
@@ -27,51 +30,47 @@ export default {
   },
   data() {
     return {
-      setScroll: '',
-      coordY: 0,
-      showFirst: '',
-      showSecond: '',
-      showThird: '',
-      desktop: false,
     }
   },
   methods: {
-    handleScroll() {
-      if (window.innerWidth < 10830) {
-        return
-      }
-      this.coordY += window.scrollY
-      if (window.scrollY < 200) {
-        this.showFirst = 'mainConteiner__container--shown mainConteiner__container--shown--main'
-        this.showSecond = 'mainConteiner__container'
-        this.showThird = 'mainConteiner__container'
-        console.log('show first')
-      } else if (window.scrollY > 200 && window.scrollY < 400) {
-        this.showFirst = 'mainConteiner__container'
-        this.showSecond = 'mainConteiner__container--shown mainConteiner__container--shown--secondary'
-        this.showThird = 'mainConteiner__container'
-        console.log('show second')
-      } else if (window.scrollY > 400 && window.scrollY < 600) {
-        this.showFirst = 'mainConteiner__container'
-        this.showSecond = 'mainConteiner__container'
-        this.showThird = 'mainConteiner__container--shown mainConteiner__container--shown--secondary'
-        console.log('show third')
-      } else if (window.scrollY > 600) {
-        window.scrollTo(0,590);
-      }
-
-      // window.scrollTo(0,0);
-      // document.querySelector('.'+className).scrollIntoView({block: "start", behavior: "smooth"});
-      console.log(window.scrollY)
-    }
   },
   mounted() {
-    /*
-    const scene = this.$scrollmagic.Scene({
-      triggerElement: '.line'
+
+    let sections = gsap.utils.toArray(".mainConteiner__section"),
+    currentSection = sections[0];
+
+    gsap.defaults({overwrite: 'auto', duration: 0.3})
+
+    // stretch out the body height according to however many sections there are.
+    gsap.set("body", {height: (sections.length * 100) + "%"})
+    gsap.registerPlugin(ScrollTrigger)
+
+    // create a ScrollTrigger for each section
+    sections.forEach((section, i) => {
+      ScrollTrigger.create({
+        // use dynamic scroll positions based on the window height (offset by half to make it feel natural)
+        start: () => (i - 0.5) * innerHeight,
+        end: () => (i + 0.5) * innerHeight,
+        // when a new section activates (from either direction), set the section accordinglyl.
+        onToggle: self => self.isActive && setSection(section)
+      })
     })
-    .setClassToggle('.line', '.showhsohsohso')
-    */
+
+    function setSection(newSection) {
+      if (newSection !== currentSection) {
+        gsap.to(currentSection, {scale: 0.8, autoAlpha: 0})
+        gsap.to(newSection, {scale: 1, autoAlpha: 1})
+        currentSection = newSection
+      }
+    }
+
+    // handles the infinite part, wrapping around at either end....
+    ScrollTrigger.create({
+      start: 1,
+      end: () => ScrollTrigger.maxScroll(window) - 1,
+      onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
+      onLeave: self => self.scroll(2)
+    }).scroll(2);
   }
 }
 </script>
@@ -81,11 +80,32 @@ export default {
  .mainConteiner{
     overflow-x: hidden;// on MacOS Chrome and Safari dont require
     font-family: "Graphik LCG"; /* this was it */
-   &__check {
-     z-index: 50;
-   }
+    margin-bottom: 300vh;
+    &__section {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      &:not(.mainConteiner__section--shown) {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.8);
+      }
+      &--shown {
+        left: -$menuWidth;
+        padding-left: $menuWidth;
+      }
+    }
  }
+ /*
+:not(.mainConteiner__section--shown) {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.8);
+      }
 
+  */
 
  @media (min-width: $mediumScreen) {
    .mainConteiner {

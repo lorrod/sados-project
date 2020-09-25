@@ -58,9 +58,10 @@ export default {
 .menubar {
   position: fixed;
   overflow-x: hidden;
+  z-index: 10000;
   &--style {
     position: relative;
-    z-index: 10000;
+    z-index: 10001;
     background-color: #FFFFFF;
     width: $menuWidth;
     height: 100vh;
