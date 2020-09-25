@@ -40,12 +40,15 @@ name: "container",
         width: auto;
       }
       &--general {
-        height: 100vh;
-        max-width: auto;
+        min-width: 100vw / 5;
+        min-height: 100vh;
+        /*
         @media (min-width: 1600px) and (min-height: 1000px) {
-          height: auto;
+          height: 100vh;
           min-width: 100vw / 5;
         }
+        
+         */
       }
       opacity:0.7;
       -moz-opacity:0.7;
