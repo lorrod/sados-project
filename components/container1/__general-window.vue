@@ -8,7 +8,7 @@
     <div class="general-window__slogan">
       Сдаём в аренду спецтехнику
     </div>
-    <div class="general-window__mouse" @click="scrollNextSection('container2')">
+    <div class="general-window__mouse" @click="scrollNextSection()">
       <img class="general-window__mouse-img" src="/mouse/mouse.svg" alt="mouse">
     </div>
   </div>
@@ -31,7 +31,7 @@ export default {
     shownImage: state => state.shownImageIndex,
   }),
   methods: {
-    scrollNextSection(section) {
+    scrollNextSection() {
       window.scrollTo(0,window.innerHeight);
       //document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
     },

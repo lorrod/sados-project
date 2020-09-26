@@ -3,7 +3,7 @@
     <div class="menubar--style">
       <div class="menubar__labels">
         <div class="menubar__btn-with-name">
-          <div class="menubar__btn" @click.stop="active = !active">
+          <div class="menubar__btn" @click.stop.prevent="active = !active">
             <img class="menubar__btn--img" src="/menu/menu-btn.svg" alt="mail">
           </div>
           <div class="menubar__company">
@@ -16,7 +16,7 @@
           <img class="menubar__contacts--img" src="/phone/phone-menu.svg" alt="phone">
           <img class="menubar__contacts--img" src="/envelope/envelope-menu.svg" alt="mail">
         </div>
-        <div class="menubar__contacts menubar__contacts--mobile" @click.stop="showModalPhone = true">
+        <div class="menubar__contacts menubar__contacts--mobile" @click.stop.prevent="showModalPhone = !showModalPhone">
           <img class="menubar__contacts--img"
                src="/phone/phone-menu.svg"
                alt="phone">
@@ -25,9 +25,9 @@
     </div>
     <div class="menubar__content" :class="[active ? 'menubar__content-active' : '']"  v-click-outside="hideContent">
       <nav class="menubar__options" :class="[active ? 'menubar__options--active' : '']">
-        <a class="menubar__options-href" href="#">Главная</a>
-        <a class="menubar__options-href" href="#">Каталог техники</a>
-        <a class="menubar__options-href" href="#">Контакты</a>
+        <p class="menubar__options-href" @click="scrollTo(0)">Главная</p>
+        <p class="menubar__options-href" @click="scrollTo(1)">Каталог техники</p>
+        <p class="menubar__options-href" @click="scrollTo(2)">Контакты</p>
       </nav>
       <div class="menubar__information">
         <hr class="menubar__information--hr">
@@ -69,6 +69,12 @@ export default {
     },
     check() {
       console.log('workin')
+    },
+    scrollTo(container) {
+      this.active = false
+      console.log('active to false')
+      console.log(this.active)
+      this.$emit("goToSection", container)
     }
   }
 }
@@ -77,6 +83,8 @@ export default {
 <style lang="scss">
 .menubar {
   position: fixed;
+  top: 0;
+  left: 0;
   overflow-x: hidden;
   z-index: 10000;
   &--style {
@@ -95,6 +103,7 @@ export default {
   }
   &__btn {
     position: relative;
+    z-index: 20000;
     display: flex;
     width: $menuWidth;
     height: $menuWidth;
@@ -108,9 +117,9 @@ export default {
     }
   }
   &__content {//menubar__content--hr
-    position: fixed;
-    left: 0;
-    top: 0;
+    position: fixed;//bag not workng with safari!!!
+    left: 0px;
+    top: 0%; //[1] anchor
     width: 40%;
     min-width: 450px;
     height: 100vh;
@@ -248,21 +257,23 @@ export default {
       flex-direction: row;
     }
     &__content {
+      position: sticky;
       width: 100vw;
       height: 100vh;
       transition: 0.5s;
       transform: translateY(-100%);
       z-index: 5000;
+      justify-content: normal;
+      min-height: 618px;
     &-active {
       transform: translateY(0%);
       }
     }
     &__options {
-    margin-top: $menuMobileHeight * 1.5;
-    margin-left: $menuMobileHeight * 1.5;
-    // margin-right: $menuWidth / 4;
+    //margin-top: $menuMobileHeight * 1.5;
+    //margin-left: $menuMobileHeight * 1.5;
+    margin: 0 0 $menuMobileHeight / 2 $menuMobileHeight / 2;
     display: flex;
-    height: 50%;
     flex-direction: column;
     &--active {
 	    -webkit-animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
@@ -274,6 +285,7 @@ export default {
       text-decoration: none;
       font-weight: 400;
       font-size: 38px;
+      margin-left: $menuWidth;
       }
     }
     &__contacts {
@@ -309,25 +321,31 @@ export default {
 
 @media (max-width: $smallScreen) {
   .menubar {
+    &__content {
+    }
     &__company {
       margin: auto 3px auto 0px;
     }
     &__contacts {
       margin-right: 15px;
+      z-index: 20000;
     &--img {
         margin: auto 0px auto 3px;
       }
     }
     &__options {
-      margin-top: 0;
-      margin-left: $menuMobileHeight;
+      margin: 0 0 0 $menuMobileHeight / 2;
+      height: 50%;
+      //margin-left: $menuMobileHeight / 2;
       &-href {
         font-size: 30px;
+        margin-left: $menuWidth / 2;
       }
     }
     &__information {
+      //padding-bottom: 50px;
       &--hr {
-        margin-left: $menuMobileHeight;
+        margin-left: $menuMobileHeight / 2;
         margin-right: $menuMobileHeight * 2;
       }
       &--contacts {

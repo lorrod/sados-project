@@ -34,7 +34,7 @@ name: "modal-show-phone",
     showModal: {
       type: Boolean,
       default() {
-        return false
+        return true
       }
     },
   },
@@ -59,15 +59,19 @@ name: "modal-show-phone",
   left: 0;
   width: 100%;
   height: 100%;
+   display: flex;
+  justify-content: center;
+   align-items: center;
   //background: rgba(0, 0, 0, 0.7);
-  display: table;
   &--active {
     -webkit-animation: bounce-in-top 1.1s both;
             animation: bounce-in-top 1.1s both;
   }
   &__wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    //padding: 20px;
+    // display: table-cell;
+    // vertical-align: middle;
+    //width: fit-content;
   }
   &__header {
     font-size: 18px;
@@ -79,14 +83,14 @@ name: "modal-show-phone",
     padding: 5px 0 25px 0;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    //justify-content: space-around;
     &--img {
       margin-right: 20px;
     }
   }
   &__container {
     background: #fff;
-    width: 80%;
+    //width: 80%;
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     margin: 0 auto;
@@ -94,6 +98,8 @@ name: "modal-show-phone",
   }
   &__footer {
     margin: 25px auto 25px auto;
+    display: flex;
+    justify-content: center;
   }
 
   &__close-but {

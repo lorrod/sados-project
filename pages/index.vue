@@ -1,6 +1,6 @@
 <template>
   <div class="mainConteiner">
-    <menubar />
+    <menubar @goToSection="scrollTo"/>
     <container class="mainConteiner__section mainConteiner__section--shown" />
     <container2 class="mainConteiner__section" />
     <container3 class="mainConteiner__section" />
@@ -34,12 +34,14 @@ export default {
     }
   },
   methods: {
+    scrollTo(container) {
+      window.scrollTo(0,container*window.innerHeight)
+    }
   },
   mounted() {
 
     let sections = gsap.utils.toArray(".mainConteiner__section"),
     currentSection = sections[0];
-    console.log(sections[0])
 
     gsap.defaults({overwrite: 'auto', duration: 0.3})
 
@@ -54,7 +56,7 @@ export default {
         start: () => (i - 0.5) * innerHeight,
         end: () => (i + 0.5) * innerHeight,
         // when a new section activates (from either direction), set the section accordinglyl.
-        onToggle: self => self.isActive && setSection(section)
+        onToggle: self => self.isActive && setSection(section),
       })
     })
 
@@ -73,17 +75,20 @@ export default {
           gsap.fromTo(newSection, {y: '-300vh', opacity: 0}, {y:0, opacity: 1, duration: 0.5})
         }
         currentSection = newSection
+        //window.scrollTo(0,sections.indexOf(newSection)*window.innerHeight)
+        //setTimeout("console.log('stop please!')", 1000);
       }
     }
 
     // handles the infinite part, wrapping around at either end....
+    /*
     ScrollTrigger.create({
       start: 1,
       end: () => ScrollTrigger.maxScroll(window) - 1,
       onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
       onLeave: self => self.scroll(2)
-    }).scroll(2);
-  }
+    }).scroll(2);*/
+  },
 }
 </script>
 
@@ -94,10 +99,10 @@ export default {
     font-family: "Graphik LCG"; /* this was it */
     margin-bottom: 300vh;
     overflow-y: scroll;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    //-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    //scrollbar-width: none;  /* Firefox */
     &::-webkit-scrollbar {
-      display: none;  /* Safari and Chrome */
+      //display: none;  /* Safari and Chrome */
     }
     &__toTopButton {
       opacity: 0;
@@ -111,7 +116,7 @@ export default {
       &:not(.mainConteiner__section--shown) {
         opacity: 0;
         z-index: -20;
-        // right: 300px;
+        right: 300px;
         transform: scale(0.8);
       }
       &--shown {

@@ -20,11 +20,13 @@ Vue.directive('click-outside',{
       document.addEventListener('touchmove', el.eventSetDrag);
       document.addEventListener('click', el.eventOnClick);
       document.addEventListener('touchend', el.eventOnClick);
+      document.addEventListener('mousedown', el.eventOnClick);
   }, unbind: function (el) {
       document.removeEventListener('touchstart', el.eventClearDrag);
       document.removeEventListener('touchmove', el.eventSetDrag);
       document.removeEventListener('click', el.eventOnClick);
       document.removeEventListener('touchend', el.eventOnClick);
+      document.removeEventListener('mousedown', el.eventOnClick);
       el.removeAttribute('data-dragging');
   },
 });

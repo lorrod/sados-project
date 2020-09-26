@@ -66,7 +66,7 @@ export default {
       display: flex;
       //align-items: center;
       width: fit-content;
-      margin: 10px 10px 10px 0;
+      margin: auto 10px auto 0;
       background-color: rgb(235,233,224);
       border-radius: 5px;
       padding: 20px 40px 20px 40px;

@@ -9,7 +9,7 @@
         <p class="right-window__explanation">Видов техники</p>
       </div>
       <hr>
-      <div class="right-window__button">
+      <div class="right-window__button" @click="scrollNextSection()">
         <img class="right-window__button--img" src="/dots/nine-dots.svg" alt="dots">
         <a class="right-window__button--href" href="#">Все виды техники</a>
       </div>
@@ -34,6 +34,10 @@ name: "rightWindow",
     shownImageIndexPrimary: state => state.shownImageIndex,
   }),
   methods: {
+    scrollNextSection() {
+      window.scrollTo(0,window.innerHeight);
+      //document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
+    },
     handleResizeImgContainer(event) {
       if (this.$refs.imageSmallContainer) {
         if ((this.$refs.imageSmallContainer.clientWidth / this.$refs.imageSmallContainer.clientHeight) < 1.6 ) {
