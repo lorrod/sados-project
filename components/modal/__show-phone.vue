@@ -93,7 +93,7 @@ name: "modal-show-phone",
   &__container {
     background: #fff;
     //width: 80%;
-    border-radius: 5px;
+    //border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     margin: 0 auto;
     padding: 20px 30px;
@@ -108,7 +108,7 @@ name: "modal-show-phone",
     width: fit-content;
     margin: 30px auto 30px auto;
     background-color: rgb(235,233,224);
-    border-radius: 10px;
+    //border-radius: 10px;
     padding: 18px 40px 18px 40px;
     font-weight: 600;
     margin: 10px 10px 10px 0;
