@@ -81,13 +81,15 @@ export default {
         console.log(this.active)
        if (window.innerWidth > 830) {
         this.timeline
-        .to('.menubar__content',  {x:430, duration: 0.7})
+        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.3})
         .fromTo('.menubar__options-href', {x:"-100%", opacity: 0}, {x:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
+        .fromTo('menubar__information--hr', {opacity:1}
         .fromTo('.menubar__information--content', {x:"-100%", opacity: 0}, {x:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
         } else {
         this.timeline
-        .to('.menubar__content', {y:window.innerHeight+70, duration: 0.7})
+        .to('.menubar__content', {y:window.innerHeight+70, opacity: 0, duration: 0.3})
         .fromTo('.menubar__options-href', {y:"-100%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
+        .fromTo('menubar__information--hr', {opacity:1}
         .fromTo('.menubar__information--content', {y:"-100%", opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
         }
       } else {
@@ -150,6 +152,7 @@ export default {
   }
   &__content {//menubar__content--hr
     position: fixed;//bag not workng with safari!!!
+    opacity: 0;
     left: -430px;
     top: 0; //[1] anchor
     width: 430px;
