@@ -5,7 +5,7 @@
     <br>
     <div class="request-call__inputs">
       <div class="request-call__inputs--name-number">
-        <input class="request-call__input request-call__input--name" v-model="username" placeholder="Ваше имя">
+        <input class="request-call__input request-call__input--name" v-model="username" placeholder="Как Вас зовут?">
         <input class="request-call__input request-call__input--phone" v-model="phone" placeholder="Ваш телефон">
       </div>
       <div class="request-call__note">
