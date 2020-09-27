@@ -3,7 +3,7 @@
     <div class="menubar--style">
       <div class="menubar__labels">
         <div class="menubar__btn-with-name">
-          <div class="menubar__btn" @click.stop.prevent="check">
+          <div class="menubar__btn" @click.stop.prevent="toggleMenu">
             <img class="menubar__btn--img" src="/menu/menu-btn.svg" alt="mail">
           </div>
           <div class="menubar__company">
@@ -12,9 +12,18 @@
           </div>
         </div>
         <div class="menubar__contacts menubar__contacts--desktop">
-          <img class="menubar__contacts--img" src="/mobile-phone/mobile-phone-menu.svg" alt="mobile">
-          <img class="menubar__contacts--img" src="/phone/phone-menu.svg" alt="phone">
-          <img class="menubar__contacts--img" src="/envelope/envelope-menu.svg" alt="mail">
+          <div class="menubar__contacts--img menubar__tooltip" @click.stop.prevent="showTooltipMobile = !showTooltipMobile">
+            <img class="menubar__tooltip-img--mobile" src="/mobile-phone/mobile-phone-menu.svg" alt="mobile">
+            <p class="menubar__tooltip--text" :class="[showTooltipMobile ? 'menubar__tooltip--active' : 'menubar__tooltip--hidden']">+7 (999) 888-55-33</p>
+          </div>
+          <div class="menubar__contacts--img menubar__tooltip" @click.stop.prevent="showTooltipPhone = !showTooltipPhone">
+            <img src="/phone/phone-menu.svg" alt="phone">
+            <p class="menubar__tooltip--text" :class="[showTooltipPhone ? 'menubar__tooltip--active' : 'menubar__tooltip--hidden']">+7 (495) 116-16-59</p>
+          </div>
+          <div class="menubar__contacts--img menubar__tooltip" @click.stop.prevent="showTooltipMail = !showTooltipMail">
+            <img src="/envelope/envelope-menu.svg" alt="mail">
+            <p class="menubar__tooltip--text" :class="[showTooltipMail ? 'menubar__tooltip--active' : 'menubar__tooltip--hidden']">info@ooosados.ru</p>
+          </div>
         </div>
         <div class="menubar__contacts menubar__contacts--mobile" @click.stop.prevent="showModalPhone = !showModalPhone">
           <img class="menubar__contacts--img"
@@ -34,7 +43,7 @@
         <div class="menubar__information--contacts">
           <p class="menubar__information--email menubar__information--content">info@ooosados.ru</p>
           <p class="menubar__information--phone  menubar__information--content">+7 (495) 116-16-59</p>
-          <p class="menubar__information--phone  menubar__information--content">+7 (999) 888-55-33</p>
+          <p class="menubar__information--mob-phone  menubar__information--content">+7 (999) 888-55-33</p>
         </div>
       </div>
     </div>
@@ -55,6 +64,9 @@ export default {
       active: false,
       showModalPhone: false,
       timeline: tl,
+      showTooltipMail: false,
+      showTooltipPhone: false,
+      showTooltipMobile: false,
     }
   },
   components: {
@@ -72,7 +84,7 @@ export default {
       console.log('im not working')
       this.showModalPhone = false
     },
-    check() {
+    toggleMenu() {
       console.log('workin')
         console.log(this.active)
       if (!this.active) {
@@ -81,14 +93,14 @@ export default {
         console.log(this.active)
        if (window.innerWidth > 830) {
         this.timeline
-        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4})
-        .fromTo('.menubar__options-href', {x:-430, opacity: 0}, {x:0, duration: 0.2, opacity: 1, ease: "power4.out", stagger: {each: 0.1}})
+        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4, ease: "power4"})
+        .fromTo('.menubar__options-href', {x:-430, opacity: 0}, {x:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})
         .fromTo('menubar__information--hr', {opacity:0}, {opacity:1})
         .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
         } else {
         this.timeline
-        .to('.menubar__content', {y:window.innerHeight+70, opacity: 1, duration: 0.4})
-        .fromTo('.menubar__options-href', {y:"-50%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
+        .to('.menubar__content', {y:window.innerHeight+70, opacity: 1, duration: 1, ease: "power4"})
+        .fromTo('.menubar__options-href', {y:"-50%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})
         .fromTo('.menubar__information--hr', {opacity:0}, {opacity:1})
         .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
         }
@@ -109,7 +121,7 @@ export default {
       console.log('active to false')
       console.log(this.active)
       this.$emit("goToSection", container)
-    }
+    },
   }
 }
 </script>
@@ -245,36 +257,44 @@ export default {
     flex-direction: column;
     margin-bottom: 33px;
     &--img {
-      margin: 5px auto 5px auto;
+      margin: 7px auto 7px auto;
       // width: 24px;// strange auto fit width
     }
     &--mobile {
       display: none;
     }
   }
+  &__tooltip {
+    position: relative;
+    //
+    &--hidden {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateX(-30%);
+    }
+    &--active {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(20%);
+    }
+  }
+  &__tooltip--text {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 40px;
+    white-space: nowrap;
+    background-color: rgba(17,17,17,0.8);
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 250px;
+    height: 40px;
+  }
 }
 
-@-webkit-keyframes slide-right {
-  0% {
-    -webkit-transform: translateX(-30);
-            transform: translateX(-30);
-  }
-  100% {
-    -webkit-transform: translateX(30px);
-            transform: translateX(30px);
-  }
-}
-
-@-webkit-keyframes slide-bottom {
-  0% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(100px);
-            transform: translateY(100px);
-  }
-}
 
 @media (max-width: $mediumScreen) {
   .menubar {
