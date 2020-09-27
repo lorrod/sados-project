@@ -1,6 +1,5 @@
 <template>
   <div class="modal-show-phone"
-       v-show="showModal"
        :class="[showModal ? 'modal-show-phone--active' : '']"
   >
     <div class="modal-show-phone__wrapper">
@@ -63,9 +62,12 @@ name: "modal-show-phone",
   justify-content: center;
    align-items: center;
   //background: rgba(0, 0, 0, 0.7);
+  transition: 0.5s;
+  transform: translateY(-100%);
   &--active {
-    -webkit-animation: bounce-in-top 1.1s both;
-            animation: bounce-in-top 1.1s both;
+    transform: translateY(0%);
+    //-webkit-animation: bounce-in-top 1.1s both;
+    //        animation: bounce-in-top 1.1s both;
   }
   &__wrapper {
     //padding: 20px;

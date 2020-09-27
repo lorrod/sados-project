@@ -3,7 +3,7 @@
     <div class="menubar--style">
       <div class="menubar__labels">
         <div class="menubar__btn-with-name">
-          <div class="menubar__btn" @click.stop.prevent="active = !active">
+          <div class="menubar__btn" @click.stop.prevent="check">
             <img class="menubar__btn--img" src="/menu/menu-btn.svg" alt="mail">
           </div>
           <div class="menubar__company">
@@ -30,11 +30,11 @@
         <p class="menubar__options-href" @click="scrollTo(2)">Контакты</p>
       </nav>
       <div class="menubar__information">
-        <hr class="menubar__information--hr">
+        <hr class="menubar__information--hr  menubar__information--content">
         <div class="menubar__information--contacts">
-          <p class="menubar__information--email">info@ooosados.ru</p>
-          <p class="menubar__information--phone">+7 (495) 116-16-59</p>
-          <p class="menubar__information--phone">+7 (999) 888-55-33</p>
+          <p class="menubar__information--email menubar__information--content">info@ooosados.ru</p>
+          <p class="menubar__information--phone  menubar__information--content">+7 (495) 116-16-59</p>
+          <p class="menubar__information--phone  menubar__information--content">+7 (999) 888-55-33</p>
         </div>
       </div>
     </div>
@@ -44,12 +44,17 @@
 
 <script>
 import modalPhones from '../modal/__show-phone'
+import { TimelineLite } from 'gsap'
+
+let tl = new TimelineLite()
+
 export default {
   name: "menubar",
   data() {
     return {
       active: false,
-      showModalPhone: false
+      showModalPhone: false,
+      timeline: tl,
     }
   },
   components: {
@@ -58,7 +63,7 @@ export default {
   methods: {
     hideContent() {
       if (this.active === true) {
-        this.active = false
+        //this.active = false
       } else if (this.showModalPhone) {
         this.showModalPhone = false
       }
@@ -69,6 +74,33 @@ export default {
     },
     check() {
       console.log('workin')
+        console.log(this.active)
+      if (!this.active) {
+        this.active = true
+        console.log('here')
+        console.log(this.active)
+       if (window.innerWidth > 830) {
+        this.timeline
+        .to('.menubar__content',  {x:430, duration: 0.7})
+        .fromTo('.menubar__options-href', {x:"-100%", opacity: 0}, {x:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
+        .fromTo('.menubar__information--content', {x:"-100%", opacity: 0}, {x:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
+        } else {
+        this.timeline
+        .to('.menubar__content', {y:window.innerHeight+70, duration: 0.7})
+        .fromTo('.menubar__options-href', {y:"-100%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
+        .fromTo('.menubar__information--content', {y:"-100%", opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
+        }
+      } else {
+        this.active = false
+        console.log('should be here')
+       if (window.innerWidth > 830) {
+        this.timeline
+        .to('.menubar__content',  {x:0, duration: 0.7})
+        } else {
+        this.timeline
+        .to('.menubar__content', {y:0, duration: 0.7})
+        }
+      }
     },
     scrollTo(container) {
       this.active = false
@@ -85,7 +117,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  overflow-x: hidden;
+  //overflow-x: hidden;
   z-index: 10000;
   &--style {
     position: relative;
@@ -118,20 +150,20 @@ export default {
   }
   &__content {//menubar__content--hr
     position: fixed;//bag not workng with safari!!!
-    left: 0px;
-    top: 0%; //[1] anchor
-    width: 40%;
+    left: -430px;
+    top: 0; //[1] anchor
+    width: 430px;
     min-width: 450px;
     height: 100vh;
     z-index: 99;
     background-color: rgb(31,31,31);
-    transition: 0.5s;
-    transform: translateX(-100%);
+    //transition: 0.5s;
+    //transform: translateX(-100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     &-active {
-      transform: translateX(0%);
+      //transform: translateX(0%);
     }
   }
   &__information {
@@ -164,8 +196,8 @@ export default {
     //transition: opacity 2s;
     //transform: translateX(-100%);
     &--active {
-	    -webkit-animation: slide-right 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
-	        animation: slide-right 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+	    //-webkit-animation: slide-right 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+	    //    animation: slide-right 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
     }
     &-href{
       margin-top: 20px;
@@ -257,27 +289,29 @@ export default {
       flex-direction: row;
     }
     &__content {
-      position: sticky;
+      position: fixed; //sticky [anchor mobile?]
+      left: 0;
+      top: -100%;
       width: 100vw;
       height: 100vh;
       transition: 0.5s;
-      transform: translateY(-100%);
+      //transform: translateY(-100%);
       z-index: 5000;
       justify-content: normal;
       min-height: 618px;
     &-active {
-      transform: translateY(0%);
+      //transform: translateY(0%);
       }
     }
     &__options {
-    //margin-top: $menuMobileHeight * 1.5;
+    // margin-top: 100px;
     //margin-left: $menuMobileHeight * 1.5;
-    margin: 0 0 $menuMobileHeight / 2 $menuMobileHeight / 2;
+    margin: $menuMobileHeight 0 $menuMobileHeight / 2 $menuMobileHeight / 2;
     display: flex;
     flex-direction: column;
     &--active {
-	    -webkit-animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
-	        animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+	    //-webkit-animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
+	     //   animation: slide-bottom 1s cubic-bezier(0.680, -0.550, 0.265, 2.550) both;
     }
     &-href{
       margin-bottom: 20px;
