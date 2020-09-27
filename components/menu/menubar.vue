@@ -30,7 +30,7 @@
         <p class="menubar__options-href" @click="scrollTo(2)">Контакты</p>
       </nav>
       <div class="menubar__information">
-        <hr class="menubar__information--hr  menubar__information--content">
+        <hr class="menubar__information--hr">
         <div class="menubar__information--contacts">
           <p class="menubar__information--email menubar__information--content">info@ooosados.ru</p>
           <p class="menubar__information--phone  menubar__information--content">+7 (495) 116-16-59</p>
@@ -81,16 +81,16 @@ export default {
         console.log(this.active)
        if (window.innerWidth > 830) {
         this.timeline
-        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.3})
-        .fromTo('.menubar__options-href', {x:"-100%", opacity: 0}, {x:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
-        .fromTo('menubar__information--hr', {opacity:1}
-        .fromTo('.menubar__information--content', {x:"-100%", opacity: 0}, {x:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
+        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4})
+        .fromTo('.menubar__options-href', {x:-430, opacity: 0}, {x:0, duration: 0.2, opacity: 1, ease: "power4.out", stagger: {each: 0.1}})
+        .fromTo('menubar__information--hr', {opacity:0}, {opacity:1})
+        .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
         } else {
         this.timeline
-        .to('.menubar__content', {y:window.innerHeight+70, opacity: 0, duration: 0.3})
-        .fromTo('.menubar__options-href', {y:"-100%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
-        .fromTo('menubar__information--hr', {opacity:1}
-        .fromTo('.menubar__information--content', {y:"-100%", opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
+        .to('.menubar__content', {y:window.innerHeight+70, opacity: 1, duration: 0.4})
+        .fromTo('.menubar__options-href', {y:"-50%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, stagger: {each: 0.1}})
+        .fromTo('.menubar__information--hr', {opacity:0}, {opacity:1})
+        .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
         }
       } else {
         this.active = false
@@ -297,7 +297,7 @@ export default {
       top: -100%;
       width: 100vw;
       height: 100vh;
-      transition: 0.5s;
+      //transition: 0.5s;
       //transform: translateY(-100%);
       z-index: 5000;
       justify-content: normal;
