@@ -40,13 +40,11 @@ export default {
      margin:-1px 0 0 -1px; // used for collapsing double lines
    }
  }
- @media (max-width: $mediumScreen) {
+ @media (max-width: 1010px) {
    .categories {
      &__category{
-       width: 50%;
-       height: 45%;
-       border: 1px solid rgb(216,216,214);
-       margin:-1px 0 0 -1px; // used for collapsing double lines
+       width: 33%;
+       //height: 20%;
      }
    }
  }

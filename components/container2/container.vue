@@ -23,7 +23,7 @@ export default {
     min-height: 50rem;
     width: 100vw;
     padding: 30px;
-    padding-left: $marginContent * 1.5;
+    padding-left: $marginContent;
     display: flex;
     &__info {
       flex: 1 2 auto;
@@ -37,7 +37,7 @@ export default {
       height: auto;
       display: flex;
       flex-direction: column;
-      padding: 0 $marginContent * 1.5 0 0;
+      padding: 0;
     }
   }
   @media (max-width: $smallScreen) {

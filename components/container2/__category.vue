@@ -53,7 +53,14 @@ export default {
       // }
     }
   }
-
+  @media (max-width: 1010px) {
+    .category {
+      min-height: 250px;
+      &__image-container {
+        height: 200px;
+      }
+    }
+  }
  @media (max-width: $smallScreen) {
    .category {
      &__button {

@@ -88,6 +88,13 @@ export default {
       }
     }
   }
+  @media (max-width: 1010px) {
+    .share-information {
+      &__order-call {
+        margin: 10px auto 10px auto;
+      }
+    }
+  }
    @media (max-width: $smallScreen) {
      .share-information {
        &__button-about {
