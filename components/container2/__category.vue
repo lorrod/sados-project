@@ -46,7 +46,7 @@ export default {
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      font-size: 25px;
+      font-size: 34px;
       font-weight: 500;
       // &--img {
       //   margin-left: 5px;
@@ -60,6 +60,9 @@ export default {
       min-height: 250px;
       &__image-container {
         height: 200px;
+      }
+       &__button {
+        font-size: 25px;
       }
     }
   }

@@ -22,8 +22,7 @@ export default {
     height: 100%;
     min-height: 50rem;
     width: 100vw;
-    padding: 30px;
-    padding-left: $marginContent;
+    //padding: 30px;
     display: flex;
     &__info {
       flex: 1 2 auto;
