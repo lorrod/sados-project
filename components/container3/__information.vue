@@ -42,8 +42,8 @@ export default {
     &__header {
       margin-bottom: 20px;
       &--title{
-        font-size: 45px;
-        font-weight: 400;
+        font-size: 60px;
+        font-weight: 600;
       }
       &--date {
         display: flex;
@@ -54,7 +54,7 @@ export default {
     }
     &__header {
       &--bolder {
-        font-weight: 400;
+        font-weight: 500;
       }
     }
     &__numbers {
@@ -73,7 +73,7 @@ export default {
       color: rgb(154,140,123);
       width: fit-content;
       margin-top: 10px;
-      font-size: 30px;
+      font-size: 44px;
       font-weight: 600;
       border-bottom: 1px solid rgb(154,140,123);
     }
@@ -84,6 +84,14 @@ export default {
         &--date {
           padding: 0;
         }
+      }
+      &__header {
+        &--title{
+          font-size: 45px;
+        }
+      }
+      &__email{
+        font-size: 30px;
       }
     }
   }

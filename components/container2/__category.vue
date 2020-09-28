@@ -26,7 +26,7 @@ export default {
 
   .category {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
     min-height: 300px;
@@ -47,12 +47,14 @@ export default {
       align-items: center;
       justify-content: center;
       font-size: 25px;
-      font-weight: 400;
+      font-weight: 500;
       // &--img {
       //   margin-left: 5px;
       // }
     }
   }
+
+
   @media (max-width: 1010px) {
     .category {
       min-height: 250px;

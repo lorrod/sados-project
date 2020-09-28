@@ -35,7 +35,7 @@ export default {
 
    &__category{
      width: 33%;
-     height: 35%;
+     height: 43%;
      border: 1px solid rgb(216,216,214);
      margin:-1px 0 0 -1px; // used for collapsing double lines
    }
@@ -44,7 +44,7 @@ export default {
    .categories {
      &__category{
        width: 33%;
-       //height: 20%;
+       height: 35%;
      }
    }
  }

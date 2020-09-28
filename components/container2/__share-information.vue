@@ -46,10 +46,12 @@ export default {
     &__head {
       margin-bottom: 20px;
       font-size: 60px;
+      font-weight: 600;
+      font-style: normal;
     }
     &__text {
       font-size: 18px;
-      //font-weight: 600;
+      font-weight: 500;
     }
     &__button-about {
       // display: flex;
@@ -71,7 +73,7 @@ export default {
       border-radius: 5px;
       padding: 20px 40px 20px 40px;
       font-size: 18px;
-      font-weight: 400;
+      font-weight: 500;
       font-style: normal;
       &--img {
         margin-left: 10px;
@@ -80,14 +82,25 @@ export default {
       }
     }
   }
-
-  @media (max-width: 1010px) {
+  /*
+  @media (max-width: 1520px) {
     .share-information {
+      &__head {
+        font-size: 60px;
+      }
+      &__text {
+        font-size: 18px;
+      }
+      &__button-about {
+        font-size: 34px;
+      }
       &__order-call {
-        margin: 50px auto 50px auto;
+        font-size: 18px;
       }
     }
   }
+   */
+
   @media (max-width: 1010px) {
     .share-information {
       &__order-call {
@@ -97,6 +110,9 @@ export default {
   }
    @media (max-width: $smallScreen) {
      .share-information {
+       &__head {
+         font-size: 45px;
+       }
        &__button-about {
          display: none;
        }

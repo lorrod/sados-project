@@ -30,7 +30,7 @@ export default {
       margin-right: 40px;
     }
   }
-   @media (max-width: $mediumScreen) {
+   @media (max-width: 970px) {
    .container3 {
       flex-direction: column-reverse;
      justify-content: space-around;

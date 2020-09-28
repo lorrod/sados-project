@@ -88,7 +88,8 @@ export default {
       margin-top: $marginContent * 1.2;
       margin-right: $marginContent;
       font-size: 70px;
-      font-weight: 400;
+      font-weight: 600;
+      font-style: normal;
       max-width: $marginContent * 8;
       z-index:-40;
     }

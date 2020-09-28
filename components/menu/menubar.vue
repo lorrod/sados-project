@@ -91,18 +91,18 @@ export default {
         this.active = true
         console.log('here')
         console.log(this.active)
-       if (window.innerWidth > 830) {
+       if (window.innerWidth > 830) {// to start animation at one time we need to set parameters, but after several clicks then animation brokes
         this.timeline
-        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4, ease: "power4"})
-        .fromTo('.menubar__options-href', {x:-430, opacity: 0}, {x:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})
-        .fromTo('menubar__information--hr', {opacity:0}, {opacity:1})
-        .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
+        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4, ease: "power4"})// parameters 'showFirst'
+        .fromTo('.menubar__options-href', {x:-430, opacity: 0}, {x:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})// parameters 'showFirst'
+        .fromTo('menubar__information--hr', {opacity:0}, {opacity:1}, 'showSecond')
+        .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})// parameters 'showSecond'
         } else {
         this.timeline
-        .to('.menubar__content', {y:window.innerHeight+70, opacity: 1, duration: 1, ease: "power4"})
-        .fromTo('.menubar__options-href', {y:"-50%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})
-        .fromTo('.menubar__information--hr', {opacity:0}, {opacity:1})
-        .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})
+        .to('.menubar__content', {y:window.innerHeight+70, opacity: 1, duration: 1, ease: "power4"})// parameters 'showFirst'
+        .fromTo('.menubar__options-href', {y:"-50%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})// parameters 'showFirst'
+        .fromTo('.menubar__information--hr', {opacity:0}, {opacity:1})// parameters 'showSecond'
+        .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})// parameters 'showSecond'
         }
       } else {
         this.active = false
@@ -193,10 +193,15 @@ export default {
       margin-right: $menuWidth / 2;
     }
     &--email {
+      font-weight: 600;
       margin: 20px 0 20px 0;
     }
     &--phone {
+      font-weight: 500;
       margin: 5px 0 5px 0;
+    }
+    &--mob-phone {
+      font-weight: 500;
     }
   }
   &__options {
@@ -218,7 +223,7 @@ export default {
       margin-top: 20px;
       color: rgb(250,250,250);
       text-decoration: none;
-      font-weight: 400;
+      font-weight: 600;
       font-size: 32px;
       transition-property: transform;
       transition: 0.25s ease;
@@ -247,7 +252,7 @@ export default {
     margin-top: 150px;
     font-size: 25px;
     &--brand {
-      font-weight: 600;
+      font-weight: bold;
       margin-left: 5px;
     }
   }

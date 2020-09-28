@@ -4,14 +4,14 @@
       <imgCarousel :currentImageIndex="shownImageIndexPrimary" :pagingRequire="true" :windowWider="widthIsMore"/>
     </div>
     <div class="right-window__information">
-      <div class="right-window__text">
+      <div class="right-window__text" @click="scrollNextSection()">
         <p class="right-window__warning">18 +</p>
         <p class="right-window__explanation">Видов техники</p>
       </div>
       <hr>
       <div class="right-window__button" @click="scrollNextSection()">
         <img class="right-window__button--img" src="/dots/nine-dots.svg" alt="dots">
-        <a class="right-window__button--href" href="#">Все виды техники</a>
+        <p class="right-window__button--href">Все виды техники</p>
       </div>
     </div>
   </div>
@@ -80,6 +80,7 @@ name: "rightWindow",
       display: flex;
       flex-direction: row;
       align-items: center;
+      cursor: pointer;
       // margin-top: 30px;
       &--img {
         //margin: auto;
@@ -106,17 +107,22 @@ name: "rightWindow",
     &__text {
     }
     &__warning {
-      font-size: 80px;
+      font-size: 78px;
       white-space: nowrap;
+      font-weight: 600;
+      font-style: normal;
     }
     &__explanation {
       //white-space: nowrap;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 25px;
     }
     &__text {
-      font-size: 25px;
+
       // margin-bottom: 30px;
-      font-weight: 500;
-      font-family: "Graphik LCG";
+      // font-weight: 500;
+      // font-family: "Graphik LCG";
     }
   }
 

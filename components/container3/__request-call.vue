@@ -64,8 +64,8 @@ export default {
     max-width: 702px;
     &__title {
       margin-bottom: 20px;
-      font-size: 45px;
-      font-weight: 400;
+      font-size: 60px;
+      font-weight: 600;
     }
     &__input {
       border: none;
@@ -75,13 +75,25 @@ export default {
       outline: none;
       //width: 100%;
       &--name {
-        width: 45%
+        width: 45%;
+        font-weight: 500;
+        &::placeholder {
+          color: #1F1F1F;
+        }
       }
       &--phone {
         width: 45%;
+        font-weight: 500;
+        &::placeholder {
+          color: #1F1F1F;
+        }
       }
       &--note {
         width: 100%;
+        font-weight: 500;
+        &::placeholder {
+          color: #1F1F1F;
+        }
       }
     }
     &__inputs{
@@ -105,7 +117,7 @@ export default {
       background-color: rgb(235,233,224);
       border-radius: 10px;
       padding: 18px 40px 18px 40px;
-      font-weight: 600;
+      font-weight: 500;
       margin: 10px 10px 10px 0;
       cursor: pointer;
       &--disabled {
@@ -124,6 +136,13 @@ export default {
     &__hint {
       color: darkred;
       font-size: 14px;
+    }
+  }
+  @media (max-width: $mediumScreen) {
+    .request-call {
+      &__title {
+        font-size: 45px;
+      }
     }
   }
 
