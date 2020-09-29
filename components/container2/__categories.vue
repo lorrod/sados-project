@@ -70,15 +70,21 @@ export default {
         z-index: 2;
       }
 
-    animation: scroll 15s linear infinite;
-      width: calc(350px * 6);
+    animation: scroll 10s linear infinite;
+      width: calc(400px * 6);
      left: 135%;
      &__category{
        min-width: 200px;
        max-width: 250px;
        height: 10px;
        border: none;
-       margin:-1px 100px 0 100px;
+       margin:-1px 125px 0 125px;
+       &:first-child {
+         margin: -1px 125px 0 0;
+       }
+       &:last-child {
+         margin: -1px 0 0 125px;
+       }
      }
    }
  }
@@ -88,7 +94,7 @@ export default {
 // Animation of scrolling vechicle
 @keyframes scroll {
 	0% { transform: translateX(0); }
-	100% { transform: translateX(calc(-350px * 8))}
+	100% { transform: translateX(calc(-400px * 8))}
 }
 
 
