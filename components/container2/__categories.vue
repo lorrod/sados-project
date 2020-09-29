@@ -1,9 +1,9 @@
 <template>
-  <div class="categories">
+  <div class="categories" ref="categories">
     <category
-      class="categories__category"
       v-for="(category, i) in this.list_cats"
       :key="i"
+      :class="'categories__category category_'+i.toString()"
       :catName="category"
     />
   </div>
@@ -11,6 +11,10 @@
 
 <script>
 import category from './__category'
+import { TimelineLite } from 'gsap'
+
+let tl = new TimelineLite()
+tl.repeat(-1)
 export default {
   name: "categories",
   components: {
@@ -18,9 +22,46 @@ export default {
   },
   data() {
     return {
-      list_cats: ["Краны", "Манипуляторы", "Экскаваторы", "Длинномеры", "Сваебойки", "Погрузчики"]
+      list_cats: ["Краны", "Манипуляторы", "Экскаваторы", "Длинномеры", "Сваебойки", "Погрузчики"],
+      mobileWidth: false,
+      timeline: tl,
     }
-  }
+  },
+  methods: {
+    handleResizeContainer(event) {
+      if (this.$refs.categories) {
+        console.log(this.$refs.categories.clientWidth)
+        if (this.$refs.categories.clientWidth < 575 ) {
+          this.mobileWidth = false
+          //console.log('setting false')
+        } else {
+          this.mobileWidth = true
+        }
+      }
+    },
+    gsapCarousel() {
+
+      this.timeline
+        .fromTo('.categories', {x:850}, {x:"-=2000", duration: 5})
+      // for (var i = 0; i < 5; i++) {
+      //   console.log('moving')
+      //   this.timeline
+      //   .fromTo('.category_'+i.toString(), {x:0}, {x:"+=500", duration: 2, ease: "power4"})
+      }
+        //, stagger: {each: 0.1}})// parameters 'showFirst'
+        //.fromTo('menubar__information--hr', {opacity:0}, {opacity:1}, 'showSecond')
+        //.fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})// parameters 'showSecond'
+  },
+  mounted() {
+    if ((this.$refs.categories.clientWidth / this.$refs.categories.clientHeight) < 1.6 ) {
+      this.mobileWidth = true
+      this.gsapCarousel()
+    }
+    window.addEventListener('resize', this.handleResizeContainer)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResizeContainer)
+  },
 }
 </script>
 
@@ -57,7 +98,8 @@ export default {
    .categories {
      display: flex;
      flex-wrap: nowrap;
-     position: relative;
+     //position: sticky;
+     //right: 100px;
      // width: 960px; ????
      	&::before,
       &::after {
@@ -70,32 +112,37 @@ export default {
         z-index: 2;
       }
 
-    animation: scroll 10s linear infinite;
-      width: calc(400px * 6);
-     left: 135%;
+    //animation: scroll 10s linear infinite;
+      width: 100%;
+     //left: 135%;
      &__category{
+       //position: fixed;
+       //right:10px;
        min-width: 200px;
        max-width: 250px;
        height: 10px;
        border: none;
-       margin:-1px 125px 0 125px;
+       margin:-1px 10px 0 10px;
+       /*
        &:first-child {
          margin: -1px 125px 0 0;
        }
        &:last-child {
          margin: -1px 0 0 125px;
        }
+
+        */
      }
    }
  }
 
 
-
+/*
 // Animation of scrolling vechicle
 @keyframes scroll {
 	0% { transform: translateX(0); }
 	100% { transform: translateX(calc(-400px * 8))}
 }
-
+*/
 
 </style>

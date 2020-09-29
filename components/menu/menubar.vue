@@ -139,13 +139,13 @@ export default {
         this.active = true
        if (window.innerWidth > 830) {// to start animation at one time we need to set parameters, but after several clicks then animation brokes
         this.timeline
-        .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4, ease: "power4"})// parameters 'showFirst'
+        .to('.menubar__content',  {x:430,y:0, opacity: 1, duration: 0.4, ease: "power4"})// parameters 'showFirst'
         .fromTo('.menubar__options-href', {x:-430, opacity: 0}, {x:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})// parameters 'showFirst'
         .fromTo('menubar__information--hr', {opacity:0}, {opacity:1}, 'showSecond')
         .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})// parameters 'showSecond'
         } else {
         this.timeline
-        .to('.menubar__content', {y:window.innerHeight+70, opacity: 1, duration: 1, ease: "power4"})// parameters 'showFirst'
+        .to('.menubar__content', {x:0, y:window.innerHeight+70, opacity: 1, duration: 1, ease: "power4"})// parameters 'showFirst'
         .fromTo('.menubar__options-href', {y:"-50%", opacity: 0}, {y:0, duration: 0.2, opacity: 1, ease: "power4", stagger: {each: 0.1}})// parameters 'showFirst'
         .fromTo('.menubar__information--hr', {opacity:0}, {opacity:1})// parameters 'showSecond'
         .fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})// parameters 'showSecond'
