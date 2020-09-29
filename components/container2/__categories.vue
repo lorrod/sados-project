@@ -30,9 +30,8 @@ export default {
    height: 100%;
    display: flex;
    flex-wrap: wrap;
-   align-content:  flex-start;
+   //align-content:  flex-start;
    justify-content: center;
-
    &__category{
      width: 33%;
      height: 43%;
@@ -40,6 +39,7 @@ export default {
      margin:-1px 0 0 -1px; // used for collapsing double lines
    }
  }
+
  @media (max-width: 1010px) {
    .categories {
      &__category{

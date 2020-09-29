@@ -37,11 +37,6 @@ name: "modal-show-phone",
       }
     },
   },
-  watch: {
-    showmodal(newValue, oldValue) {
-      console.log(oldValue)
-    }
-  },
   methods: {
     closeModal() {
       this.$emit('closeModalPhone')

@@ -37,6 +37,7 @@ export default {
       width: 80px;
       background-color: rgb(235,233,224);
       border-radius: 50%;
+      cursor: pointer;
     }
     &__text {
       margin: auto;

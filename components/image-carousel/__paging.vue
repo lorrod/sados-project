@@ -68,6 +68,7 @@ name: "paging",
     }
     &__container {
       margin: 5px;
+      cursor: pointer;
     }
     &__svg {
       transform: rotate(-90deg);

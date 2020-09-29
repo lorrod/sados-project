@@ -5,11 +5,11 @@
     <br>
     <div class="request-call__inputs">
       <div class="request-call__inputs--name-number">
-        <input class="request-call__input request-call__input--name" v-model="username" placeholder="Как Вас зовут?">
-        <input class="request-call__input request-call__input--phone" v-model="phone" placeholder="Ваш телефон">
+        <input type='text' class="request-call__input request-call__input--name" v-model="username" placeholder="Как Вас зовут?">
+        <input type='text' class="request-call__input request-call__input--phone" v-model="phone" placeholder="Ваш телефон">
       </div>
       <div class="request-call__note">
-        <input class="request-call__input request-call__input--note" v-model="notetext" placeholder="Заметка">
+        <input type='text' class="request-call__input request-call__input--note" v-model="notetext" placeholder="Заметка">
       </div>
       <br>
       <br>
@@ -61,10 +61,10 @@ export default {
 <style lang="scss">
 
   .request-call {
-    max-width: 702px;
+    max-width: 1000px;
     &__title {
       margin-bottom: 20px;
-      font-size: 60px;
+      font-size: 70px;
       font-weight: 600;
     }
     &__input {
@@ -73,6 +73,7 @@ export default {
       height: 40px;
       margin-bottom: 15px;
       outline: none;
+      font-size: 19px;
       //width: 100%;
       &--name {
         width: 45%;
@@ -128,16 +129,34 @@ export default {
     }
     &__agreement {
       color: rgb(184,183,182);
-      font-size: 14px;
+      font-size: 19px;
       &--link {
         color: rgb(184,183,182);
       }
     }
     &__hint {
       color: darkred;
-      font-size: 14px;
+      font-size: 19px;
     }
   }
+
+  @media (max-width: $extraLargeScreen) {
+      .request-call {
+        &__title {
+          font-size: 60px;
+        }
+        &__input {
+          font-size: 14px;
+        }
+        &__agreement {
+          font-size: 14px;
+        }
+        &__hint {
+          font-size: 14px;
+        }
+      }
+  }
+
   @media (max-width: $mediumScreen) {
     .request-call {
       &__title {

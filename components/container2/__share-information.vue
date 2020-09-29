@@ -1,6 +1,6 @@
 <template>
   <div class="share-information">
-    <div>
+    <div class="share-information__text">
       <div class="share-information__head">
         <p>Мы предлагаем</p>
       </div>
@@ -21,7 +21,7 @@
         <!-- <p class="share-information__button-about--circle">></p> --->
       </div>
     </div>
-    <div class="share-information__order-call">
+    <div class="share-information__order-call" @click="scrollNextSection()">
       <p>Заказать звонок</p>
       <img class="share-information__order-call--img" src="/phone/phone-menu.svg" alt="phone">
     </div>
@@ -30,7 +30,13 @@
 
 <script>
 export default {
-  name: "shareInformation"
+  name: "shareInformation",
+  methods: {
+    scrollNextSection() {
+      window.scrollTo(0,window.innerHeight*2);
+      //document.querySelector("."+section).scrollIntoView({block: "start", behavior:"smooth"});
+    },
+  }
 }
 </script>
 
@@ -43,6 +49,7 @@ export default {
     justify-content: space-between;
     flex-direction: column;
     background-color: white;
+    padding: 4% 0 4% 0;
     &__head {
       margin-bottom: 20px;
       font-size: 60px;
@@ -51,7 +58,7 @@ export default {
     }
     &__text {
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 400;
       max-width: 600px;
     }
     &__button-about {
@@ -76,6 +83,7 @@ export default {
       font-size: 18px;
       font-weight: 500;
       font-style: normal;
+      cursor: pointer;
       &--img {
         margin-left: 10px;
         width: 16px;
@@ -83,27 +91,33 @@ export default {
       }
     }
   }
-  /*
-  @media (max-width: 1520px) {
+
+  @media (min-width: $extraLargeScreen) {
     .share-information {
       &__head {
-        font-size: 60px;
+        font-size: 70px;
       }
       &__text {
-        font-size: 18px;
+        font-size: 23px;
       }
       &__button-about {
-        font-size: 34px;
+        font-size: 39px;
       }
       &__order-call {
-        font-size: 18px;
+        font-size: 23px;
       }
     }
   }
-   */
 
   @media (max-width: 1010px) {
     .share-information {
+      padding: 0;
+      &__text {
+        margin: auto;
+      }
+      &__head {
+        margin-top: 2px;
+      }
       &__order-call {
         margin: 10px auto 10px auto;
       }

@@ -20,10 +20,11 @@ export default {
 <style lang="scss">
   .container3 {
     display: flex;
-    //align-items: center;
+    align-items: center;
+    justify-content: space-around;
     height: 100vh;
     width: 100vw;
-    padding: 0 $marginContent 0 $marginContent 0;
+    padding: 0;
     //padding-left: $marginContent * 1.5;
     &__info {
       // flex: 1 3 auto;

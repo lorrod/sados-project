@@ -28,7 +28,7 @@ export default {
       flex: 1 2 auto;
     }
     &__categories {
-      //align-content: center;
+      align-content: center;
     }
   }
   @media (max-width: 1010px) {

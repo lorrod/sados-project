@@ -1,6 +1,6 @@
 <template>
   <div class="mainConteiner">
-    <menubar @goToSection="scrollTo"/>
+    <menubar @goToSection="scrollTo" ref="menuBar"/>
     <container class="mainConteiner__section mainConteiner__section--shown" />
     <container2 class="mainConteiner__section" />
     <container3 class="mainConteiner__section" />
@@ -30,15 +30,30 @@ export default {
   },
   data() {
     return {
-      isGeneral: true
+      isGeneral: true,
+      windowPage: 0,
     }
   },
   methods: {
     scrollTo(container) {
       window.scrollTo(0,container*window.innerHeight)
+    },
+    checkFunc() {
+      console.log('mogu li ya tak?')
+    },
+  },
+  watch: {
+    windowPage(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.$refs.menuBar.closeAll()
+      }
     }
   },
   mounted() {
+
+    //for watching for scroll coordiates to close components
+     //window.addEventListener("scroll", this.coordinateChangeY)
+    let that = this
 
     let sections = gsap.utils.toArray(".mainConteiner__section"),
     currentSection = sections[0];
@@ -62,6 +77,9 @@ export default {
 
     function setSection(newSection) {
       if (newSection !== currentSection) {
+
+        that.windowPage = newSection
+
         if (sections.indexOf(newSection) != 0) {
           gsap.to('.mainConteiner__toTopButton', {opacity:1})
         } else {
@@ -88,6 +106,9 @@ export default {
       onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
       onLeave: self => self.scroll(2)
     }).scroll(2);*/
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.coordinateChangeY)
   },
 }
 </script>
@@ -117,7 +138,7 @@ export default {
         opacity: 0;
         z-index: -20;
         right: 300px;
-        transform: scale(0.8);
+        transform: scale(0.85);
       }
       &--shown {
         left: -$menuWidth;

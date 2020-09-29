@@ -80,11 +80,6 @@ name: "container",
 </script>
 
 <style lang="scss">
-  .test {
-    position: fixed;
-    bottom: 40px;
-    left: 40px;
-  }
   .carousel-container {
     width: 100%;
     height: 100%;

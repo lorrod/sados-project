@@ -8,8 +8,12 @@
     <div class="general-window__slogan">
       Сдаём в аренду спецтехнику
     </div>
-    <div class="general-window__mouse" @click="scrollNextSection()">
-      <img class="general-window__mouse-img" src="/mouse/mouse.svg" alt="mouse">
+    <div class="general-window__mouse">
+      <img class="general-window__mouse-img"
+           src="/mouse/mouse.svg"
+           alt="mouse"
+           @click="scrollNextSection()"
+      >
     </div>
   </div>
 </template>
@@ -102,6 +106,7 @@ export default {
         // width: 24px;
         // height: 24px;
         margin: 0 auto 0 auto;
+        cursor: pointer;
       }
     }
   }

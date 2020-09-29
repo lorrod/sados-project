@@ -40,16 +40,16 @@ export default {
     padding-right: 100px;
     padding-left: 60px;
     &__header {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       &--title{
-        font-size: 60px;
+        font-size: 70px;
         font-weight: 600;
       }
       &--date {
         display: flex;
         white-space: pre;
         padding-top: 5px;
-        font-size: 20px;
+        font-size: 30px;
       }
     }
     &__header {
@@ -59,7 +59,7 @@ export default {
     }
     &__numbers {
       margin-bottom: 60px;
-      font-size: 22px;
+      font-size: 27px;
       &--rows {
         padding: 5px 0 5px 0;
         display: flex;
@@ -73,11 +73,34 @@ export default {
       color: rgb(154,140,123);
       width: fit-content;
       margin-top: 10px;
-      font-size: 44px;
+      font-size: 49px;
       font-weight: 600;
       border-bottom: 1px solid rgb(154,140,123);
     }
   }
+  @media (max-width: $extraLargeScreen) {
+    .information {
+      &__header {
+        &--title {
+          font-size: 60px;
+
+          &--date {
+            font-size: 20px;
+          }
+        }
+
+        &__numbers {
+          font-size: 22px;
+        }
+
+        &__email {
+          font-size: 44px;
+        }
+      }
+    }
+  }
+
+
     @media (max-width: $mediumScreen) {
     .information {
       &__header {
@@ -95,5 +118,6 @@ export default {
       }
     }
   }
+
 
 </style>
