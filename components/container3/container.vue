@@ -25,6 +25,7 @@ export default {
     height: 100vh;
     width: 100vw;
     padding: 0;
+    background-color: #FCFBF9;
     //padding-left: $marginContent * 1.5;
     &__info {
       // flex: 1 3 auto;

@@ -43,7 +43,6 @@ export default {
       if (this.$refs.imageContainer) {
         if ((this.$refs.imageContainer.clientWidth / this.$refs.imageContainer.clientHeight) < 1.6 ) {
           this.widthIsMore = false
-          //console.log('setting false')
         } else {
           this.widthIsMore = true
         }
@@ -53,9 +52,6 @@ export default {
   mounted() {
     if ((this.$refs.imageContainer.clientWidth / this.$refs.imageContainer.clientHeight) < 1.6 ) {
       this.widthIsMore = false
-      console.log(this.$refs.imageContainer.clientWidth)
-      console.log(this.$refs.imageContainer.clientHeight)
-      console.log(this.$refs.imageContainer.clientWidth / this.$refs.imageContainer.clientHeight)
     }
     window.addEventListener('resize', this.handleResizeImgContainer)
   },
@@ -71,8 +67,6 @@ export default {
     height: 100%;
     background: rgb(50,45,36);
     background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
-    //background-image: url(/main-pictures/excavator.svg);
-    //background-size: cover;
     display: flex;
     justify-content: space-between;
     flex-direction: column;

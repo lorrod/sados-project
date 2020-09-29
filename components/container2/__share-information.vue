@@ -48,7 +48,7 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background-color: white;
+    background-color: #FCFBF9;
     padding: 4% 0 4% 0;
     &__head {
       margin-bottom: 20px;

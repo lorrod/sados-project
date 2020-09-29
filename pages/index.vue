@@ -114,7 +114,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+  body {
+    background-color: #FCFBF9;
+  }
  .mainConteiner{
     overflow-x: hidden;// on MacOS Chrome and Safari dont require
     font-family: "Graphik LCG"; /* this was it */

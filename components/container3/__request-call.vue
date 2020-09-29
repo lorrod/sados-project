@@ -74,6 +74,7 @@ export default {
       margin-bottom: 15px;
       outline: none;
       font-size: 19px;
+      background-color: #FCFBF9;
       //width: 100%;
       &--name {
         width: 45%;

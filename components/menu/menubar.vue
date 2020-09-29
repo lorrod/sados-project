@@ -512,17 +512,6 @@ h4 {
 	user-select: none;
 }
 
-// transition mask
-.path-burger {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 68px;
-  width: 68px;
-  // two masks because... browser support.
-  mask: url(#mask);
-  -webkit-mask-box-image: url(https://raygun.io/upload/mask.svg);
-}
 
 .animate-path {
   position: absolute;
@@ -672,24 +661,6 @@ h4 {
 // relative parent is the button
 .burger-filling {
   top: 12px;
-}
-
-
-
-
-
-// burger ring container
-.burger-ring {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 68px;
-  height: 68px;
-}
-
-.svg-ring {
-  width: 68px;
-  height: 68px;
 }
 
 
