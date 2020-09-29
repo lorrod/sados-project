@@ -16,7 +16,7 @@
       </div>
       <div class="information__numbers--rows">
         <img class="information__numbers--img" src="/phone/phone-light.svg" alt="phone">
-        <p>+7 (495) 116-16-59</p>
+        <p class="information__numbers--text">+7 (495) 116-16-59</p>
       </div>
     </div>
     <div>
@@ -68,6 +68,9 @@ export default {
       &--img {
         margin-right: 10px;
       }
+      &--text {
+        letter-spacing: 1px;
+      }
     }
     &__email{
       color: rgb(154,140,123);
@@ -103,6 +106,7 @@ export default {
 
     @media (max-width: $mediumScreen) {
     .information {
+      padding: 0;
       &__header {
         &--date {
           padding: 0;
@@ -119,5 +123,24 @@ export default {
     }
   }
 
+    @media (max-width: $smallScreen) {
+    .information {
+      &__header {
+        &--title {
+          font-size: 35px;
+        }
+        &--date {
+            font-size: 18px;
+          }
+        }
 
+        &__numbers {
+          font-size: 17px;
+        }
+
+        &__email {
+          font-size: 40px;
+        }
+      }
+    }
 </style>

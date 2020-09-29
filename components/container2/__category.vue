@@ -57,7 +57,7 @@ export default {
     @media (max-width: 1150px) {
     .category {
        &__button {
-        font-size: 30px;
+        font-size: 24px;
       }
     }
   }

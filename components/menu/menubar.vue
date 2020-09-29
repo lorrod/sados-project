@@ -137,8 +137,6 @@ export default {
       }
       if (!this.active) {
         this.active = true
-        console.log('here')
-        console.log(this.active)
        if (window.innerWidth > 830) {// to start animation at one time we need to set parameters, but after several clicks then animation brokes
         this.timeline
         .to('.menubar__content',  {x:430, opacity: 1, duration: 0.4, ease: "power4"})// parameters 'showFirst'
@@ -447,6 +445,7 @@ export default {
 @media (max-width: $smallScreen) {
   .menubar {
     &__content {
+      justify-content: space-around;
     }
     &__company {
       margin: auto 3px auto 0px;
@@ -468,7 +467,7 @@ export default {
       }
     }
     &__information {
-      //padding-bottom: 50px;
+      //margin-bottom: 50px;
       &--hr {
         margin-left: $menuMobileHeight / 2;
         margin-right: $menuMobileHeight * 2;
@@ -481,8 +480,7 @@ export default {
 }
 
 
-$color: #000;		  // icon color
-$blue: #158fef;	  // background color
+
 $animation: 0.6s;	// animation speed
 $scale: 0.8;			  // icon scale 68/68 default
 
@@ -491,14 +489,6 @@ $scale: 0.8;			  // icon scale 68/68 default
  }
 
 
-h4 {
-  font-family: arial,helvetica,serif;
-  //color: $color;
-  //font-size: 18px;
-  text-align: center;
-  margin: 40px 0 0;
-
-}
 
 .hamburglar {
   transform: scale($scale);
@@ -507,7 +497,7 @@ h4 {
   display: block;
   width: 68px;
   height: 68px;
-  background: rgb(238,236,242);
+  background: rgba(255,255,255, 0);
   -webkit-touch-callout: none;
 	user-select: none;
 }
@@ -643,7 +633,7 @@ h4 {
   height: 4px;
   width: 36px;
   border-radius: 2px;
-  background: $color;
+  background: #000000;
 }
 
 .burger-bun-top {

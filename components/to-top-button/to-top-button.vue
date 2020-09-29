@@ -38,6 +38,9 @@ export default {
       background-color: rgb(235,233,224);
       border-radius: 50%;
       cursor: pointer;
+      &:hover {
+        background-color: #999999;
+      }
     }
     &__text {
       margin: auto;

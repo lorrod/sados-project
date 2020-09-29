@@ -127,6 +127,9 @@ export default {
         color: #c0c0c0;
         background-color: #ffffff;
       }
+      &:hover {
+        background-color: #999999;
+      }
     }
     &__agreement {
       color: rgb(184,183,182);

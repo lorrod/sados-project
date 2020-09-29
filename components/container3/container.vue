@@ -1,7 +1,7 @@
 <template>
  <div class="container3">
    <information class="container3__info" />
-   <requestForm />
+   <requestForm class="container3__form" />
  </div>
 </template>
 
@@ -36,14 +36,25 @@ export default {
    .container3 {
       flex-direction: column-reverse;
      justify-content: space-around;
-     align-items: center;
+     align-items: start;
     padding: 70px 0;
     //padding-left: 0;
      &__info {
        margin: $marginContent 0 0 0;
      }
+     &__form {
+        padding-left: 60px;
+     }
    }
  }
+ @media (max-width: $mediumScreen) {
+   .container3 {
+     &__form {
+        padding-left: 0;
+     }
+   }
+ }
+
   @media (max-width: $smallScreen) {
    .container3 {
       &__info {

@@ -89,6 +89,9 @@ export default {
         width: 16px;
         height: auto;
       }
+      &:hover {
+        background-color: #999999;
+      }
     }
   }
 
