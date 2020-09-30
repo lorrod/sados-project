@@ -11,11 +11,11 @@
         </div>
         <div class="modal-show-phone__information">
           <img class="modal-show-phone__information--img" src="/mobile-phone/mobile-phone.svg" alt="mobile">
-          <p>+7 (999) 888-55-33</p>
+          <a href="phoneto:+79998885533">+7 (999) 888-55-33</a>
         </div>
         <div class="modal-show-phone__information">
           <img class="modal-show-phone__information--img" src="/phone/phone-light.svg" alt="phone">
-          <p>+7 (495) 116-16-59</p>
+          <a href="phoneto:+74951161659" class="modal-show-phone__information--short-number">+7 (495) 116-16-59</a>
         </div>
         <p>Ежедневно с 9:00 до 18:00 </p>
         <div class="modal-show-phone__footer">
@@ -83,6 +83,9 @@ name: "modal-show-phone",
     //justify-content: space-around;
     &--img {
       margin-right: 20px;
+    }
+    &--short-number {
+      // letter-spacing: 0.5px;
     }
   }
   &__container {

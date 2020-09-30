@@ -150,7 +150,7 @@ export default {
           font-size: 60px;
         }
         &__input {
-          font-size: 14px;
+          font-size: 16px;
         }
         &__agreement {
           font-size: 14px;

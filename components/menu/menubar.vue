@@ -107,8 +107,14 @@ export default {
       this.showModalPhone = false
     },
     showModalWindow() {
-      this.closeAll()
       this.showModalPhone = !this.showModalPhone
+      if (this.active) {
+        this.toggleMenu()
+      } else if (this.showTooltipMail || this.showTooltipPhone || this.showTooltipMobile) {
+        this.showTooltipMail = false
+        this.showTooltipPhone = false
+        this.showTooltipMobile = false
+      }
     },
     showToolTip(tip) {
       // do not close all for posibility to show several tooltips
