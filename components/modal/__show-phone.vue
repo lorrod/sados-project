@@ -11,11 +11,11 @@
         </div>
         <div class="modal-show-phone__information">
           <img class="modal-show-phone__information--img" src="/mobile-phone/mobile-phone.svg" alt="mobile">
-          <a href="phoneto:+79998885533">+7 (999) 888-55-33</a>
+          <a href="tel:+79998885533">+7 (999) 888-55-33</a>
         </div>
         <div class="modal-show-phone__information">
           <img class="modal-show-phone__information--img" src="/phone/phone-light.svg" alt="phone">
-          <a href="phoneto:+74951161659" class="modal-show-phone__information--short-number">+7 (495) 116-16-59</a>
+          <a href="tel:+74951161659" class="modal-show-phone__information--short-number">+7 (495) 116-16-59</a>
         </div>
         <p>Ежедневно с 9:00 до 18:00 </p>
         <div class="modal-show-phone__footer">
