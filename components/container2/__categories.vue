@@ -156,8 +156,9 @@ export default {
       //width: 100%;
      //left: 135%;
      &__category{
-      position:fixed;
+      position:sticky;
       left:-250px;
+       bottom: 70px;
        width: 200px;
        height: auto;
        //height: 10px;

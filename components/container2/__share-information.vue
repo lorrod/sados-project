@@ -11,10 +11,6 @@
         <br>
         <p>Мы на долговременной основе сотрудничаем со строительными, промышленными, дорожными, коммунальными организациями, предоставляя технику на взаимовыгодных условиях.</p>
       </div>
-      <br class="share-information__todo-remove">
-      <br class="share-information__todo-remove">
-      <br class="share-information__todo-remove">
-      <br>
       <div class="share-information__button-about">
         <p>О компании</p>
         <img class="share-information__button-about--img" src="/next-button/next-button-light.svg" alt="show-info">
@@ -117,6 +113,7 @@ export default {
       padding: 0;
       &__text {
         margin: 5px auto;
+        text-align: center;
       }
       &__head {
         margin-top: 2px;

@@ -63,8 +63,7 @@ export default {
 
 <style lang="scss">
   .general-window {
-    width: 100%;
-    height: 100%;
+    width: 75%;
     background: rgb(50,45,36);
     background: linear-gradient(90deg, rgba(50,45,36,1) 0%, rgba(76,67,55,1) 100%);
     display: flex;
@@ -107,6 +106,8 @@ export default {
 
 @media (max-width: $mediumScreen) {
   .general-window {
+      width: 100%;
+      height: 100%;
       &__slogan {
         margin-left: $marginContent / 2;
         font-size: 45px;

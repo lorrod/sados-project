@@ -1,5 +1,8 @@
 <template>
-  <div class="carousel-container" ref="carouselWindow">
+  <div class="carousel-container"
+       ref="carouselWindow"
+       :class="[pagingRequire ? 'carousel-container--primary': '']"
+  >
     <div class="carousel-container__images">
       <div class="carousel-container__image"
       v-for="(name, key) in imageArray"
@@ -81,9 +84,11 @@ name: "container",
 
 <style lang="scss">
   .carousel-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    &--primary {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
     &__images {
       display: flex;
       margin: 0 auto;

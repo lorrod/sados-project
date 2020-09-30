@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss">
   .container2 {
-    height: 100%;
+    // height: 100%;
     min-height: 50rem;
     width: 100vw;
     //padding: 30px;
