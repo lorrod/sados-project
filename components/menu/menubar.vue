@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="menubar__content" :class="[active ? 'menubar__content-active' : '']"  v-click-outside="hideContent">
+    <div class="menubar__content" :class="[active ? 'menubar__content-active' : '']" >
       <nav class="menubar__options" :class="[active ? 'menubar__options--active' : '']">
         <p class="menubar__options-href" @click="scrollTo(0)">Главная</p>
         <p class="menubar__options-href" @click="scrollTo(1)">Каталог техники</p>
