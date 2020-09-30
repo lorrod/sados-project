@@ -115,7 +115,7 @@ export default {
       //align-items: center;
       white-space: nowrap;
       width: fit-content;
-      margin: 30px auto 30px auto;
+      //margin: 30px auto 30px auto;
       background-color: rgb(235,233,224);
       border-radius: 10px;
       padding: 18px 40px 18px 40px;
@@ -164,7 +164,10 @@ export default {
   @media (max-width: $mediumScreen) {
     .request-call {
       &__title {
-        font-size: 45px;
+        font-size: 40px;
+      }
+      &__btn {
+        margin: 5px 10px 5px 0;
       }
     }
   }

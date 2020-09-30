@@ -23,26 +23,60 @@ export default {
   data() {
     return {
       list_cats: ["Краны", "Манипуляторы", "Экскаваторы", "Длинномеры", "Сваебойки", "Погрузчики"],
-      mobileWidth: false,
       timeline: tl,
+      runningTimeLine: null,
+      runningTimeLine2: null,
+      animationTimeLine: null,
+    }
+  },
+  props: {
+    mobileWidth: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    },
+  },
+  watch: {
+    mobileWidth(newValue) {
+      console.log(newValue)
+      if (newValue) {
+        this.gsapCarousel()
+      } else {
+        console.log('clearing')
+        //this.timeline.clear()
+        //this.runningTimeLine2.kill()
+        //this.timeline.to('.categories', {x:0,y:0})
+        // this.timeline.restart()
+        // this.timeline.to('.categories', {x:0,y:0})
+        // this.timeline.to('.categories', {x:0,y:0})
+        this.timeline.restart()
+        this.timeline.progress(0);
+        this.timeline.pause(0)
+        this.runningTimeLine = false
+
+      }
+
     }
   },
   methods: {
-    handleResizeContainer(event) {
-      if (this.$refs.categories) {
-        console.log(this.$refs.categories.clientWidth)
-        if (this.$refs.categories.clientWidth < 575 ) {
-          this.mobileWidth = false
-          //console.log('setting false')
-        } else {
-          this.mobileWidth = true
-        }
-      }
-    },
     gsapCarousel() {
-
-      this.timeline
-        .fromTo('.categories', {x:850}, {x:"-=2000", duration: 5})
+      // console.log('checking active')
+      // logthis.timeline.isActive()
+      if (this.runningTimeLine) {
+        return
+      }
+      // console.log('start running')
+      if (this.animationTimeLine) {
+       this.timeline.resume()
+        this.runningTimeLine = true
+       return
+      }
+      this.timeline.set('.categories', {x:0}, )
+      this.animationTimeLine = this.timeline
+        .fromTo('.categories', {x:-750}, {x:650, duration: 6, ease: "power0"})
+        .fromTo('.categories', {x:650}, {x:-750, duration: 6, ease: "power0"})
+      this.runningTimeLine = true
       // for (var i = 0; i < 5; i++) {
       //   console.log('moving')
       //   this.timeline
@@ -51,16 +85,6 @@ export default {
         //, stagger: {each: 0.1}})// parameters 'showFirst'
         //.fromTo('menubar__information--hr', {opacity:0}, {opacity:1}, 'showSecond')
         //.fromTo('.menubar__information--content', {y:500, opacity: 0}, {y:0, duration: 0.2, opacity: 1 , stagger: {each: 0.1}})// parameters 'showSecond'
-  },
-  mounted() {
-    if ((this.$refs.categories.clientWidth / this.$refs.categories.clientHeight) < 1.6 ) {
-      this.mobileWidth = true
-      this.gsapCarousel()
-    }
-    window.addEventListener('resize', this.handleResizeContainer)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.handleResizeContainer)
   },
 }
 </script>
@@ -122,7 +146,7 @@ export default {
        max-width: 250px;
        height: 10px;
        border: none;
-       margin:-1px 10px 0 10px;
+       margin:-1px 40px 0 40px;
        /*
        &:first-child {
          margin: -1px 125px 0 0;

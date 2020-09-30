@@ -1,7 +1,10 @@
 <template>
- <div class="container2">
+ <div class="container2" ref="container2">
     <shareInformation class="container2__info"/>
-    <categories class="container2__categories"/>
+    <categories
+      class="container2__categories"
+      :mobileWidth="this.isMobile"
+    />
  </div>
 </template>
 
@@ -10,10 +13,37 @@ import shareInformation from './__share-information'
 import categories from './__categories'
 export default {
   name: "container2",
+  data() {
+    return {
+      isMobile: false
+    }
+  },
   components: {
     shareInformation,
     categories
+  },
+  methods: {
+    handleResizeContainer(event) {
+      if (this.$refs.container2) {
+        if (this.$refs.container2.clientWidth > 619 ) {
+          console.log('>>>>>>')
+          this.isMobile = false
+        } else {
+          console.log('<<<<<<')
+          this.isMobile = true
+        }
+      }
+    },
+  },
+  mounted() {
+  if (this.$refs.container2.clientWidth > 619 ) {
+    this.isMobile = false
   }
+  window.addEventListener('resize', this.handleResizeContainer)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResizeContainer)
+  },
 }
 </script>
 
