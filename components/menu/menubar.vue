@@ -3,7 +3,7 @@
     <div class="menubar--style">
       <div class="menubar__labels">
         <div class="menubar__btn-with-name">
-          <div class="menubar__btn" @click.stop.prevent="toggleMenu">
+          <div class="menubar__btn" @click="toggleMenu">
              <div id="hamburger" :class="[active ? 'hamburglar is-open' : 'hamburglar is-closed']">
                 <div class="burger-icon">
                   <div class="burger-container">
@@ -23,20 +23,20 @@
           </div>
         </div>
         <div class="menubar__contacts menubar__contacts--desktop">
-          <div class="menubar__contacts--img menubar__tooltip" @click.stop.prevent="showToolTip('MOBILE')">
+          <div class="menubar__contacts--img menubar__tooltip" @click="showToolTip('MOBILE')">
             <img class="menubar__tooltip-img--mobile" src="/mobile-phone/mobile-phone-menu.svg" alt="mobile">
             <p class="menubar__tooltip--text" :class="[showTooltipMobile ? 'menubar__tooltip--active' : 'menubar__tooltip--hidden']">+7 (999) 888-55-33</p>
           </div>
-          <div class="menubar__contacts--img menubar__tooltip" @click.stop.prevent="showToolTip('PHONE')">
+          <div class="menubar__contacts--img menubar__tooltip" @click="showToolTip('PHONE')">
             <img src="/phone/phone-menu.svg" alt="phone">
             <p class="menubar__tooltip--text" :class="[showTooltipPhone ? 'menubar__tooltip--active' : 'menubar__tooltip--hidden']">+7 (495) 116-16-59</p>
           </div>
-          <div class="menubar__contacts--img menubar__tooltip" @click.stop.prevent="showToolTip('MAIL')">
+          <div class="menubar__contacts--img menubar__tooltip" @click="showToolTip('MAIL')">
             <img src="/envelope/envelope-menu.svg" alt="mail">
             <p class="menubar__tooltip--text" :class="[showTooltipMail ? 'menubar__tooltip--active' : 'menubar__tooltip--hidden']">info@ooosados.ru</p>
           </div>
         </div>
-        <div class="menubar__contacts menubar__contacts--mobile" @click.stop.prevent="showModalWindow()">
+        <div class="menubar__contacts menubar__contacts--mobile" @click="showModalWindow()">
           <img class="menubar__contacts--img"
                src="/phone/phone-menu.svg"
                alt="phone">
