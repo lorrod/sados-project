@@ -115,4 +115,12 @@ name: "container",
       //text-align: center;
     }
   }
+
+  @media (max-width: $mediumScreen) {
+    .carousel-container {
+      &__pages {
+        top: 10px;
+      }
+    }
+  }
 </style>
