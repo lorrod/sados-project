@@ -163,9 +163,7 @@ export default {
       }
     },
     scrollTo(container) {
-      this.active = false
-      console.log('active to false')
-      console.log(this.active)
+      this.toggleMenu()
       this.$emit("goToSection", container)
     },
     closeAll() {

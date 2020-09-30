@@ -11,7 +11,7 @@
 
 <script>
 import category from './__category'
-import { TimelineLite } from 'gsap'
+import { gsap, TimelineLite } from 'gsap'
 
 let tl = new TimelineLite()
 tl.repeat(-1)
@@ -72,11 +72,27 @@ export default {
         this.runningTimeLine = true
        return
       }
-      this.timeline.set('.categories', {x:0}, )
+
+
+      // this.timeline.set('.categories', {x:0}, )
+      // this.animationTimeLine = this.timeline
+      //   .fromTo('.categories__category', {x:-750}, {x:650, duration: 6, ease: "power0"})
+      //   .fromTo('.categories__category', {x:650}, {x:-750, duration: 6, ease: "power0"})
+      // this.runningTimeLine = true
+
+      console.log('starting')
+      this.timeline.set('.categories__category', {x: (i) => i * 250}, )
       this.animationTimeLine = this.timeline
-        .fromTo('.categories', {x:-750}, {x:650, duration: 6, ease: "power0"})
-        .fromTo('.categories', {x:650}, {x:-750, duration: 6, ease: "power0"})
-      this.runningTimeLine = true
+        .to('.categories__category', {
+          duration: 10,
+          ease: "none",
+          x: "+=1500", //move each box 500px to right
+          modifiers: {
+            x: gsap.utils.unitize(x => parseFloat(x) % 1490) //force x value to be between 0 and 500 using modulus
+          },
+          repeat: -1})
+
+
       // for (var i = 0; i < 5; i++) {
       //   console.log('moving')
       //   this.timeline
@@ -122,9 +138,9 @@ export default {
    .categories {
      display: flex;
      flex-wrap: nowrap;
-     //position: sticky;
+     position:relative;
      //right: 100px;
-     // width: 960px; ????
+     width: 1000px;
      	&::before,
       &::after {
         //@include white-gradient;
@@ -132,21 +148,21 @@ export default {
         content: "";
         height: 100px;
         position: absolute;
-        width: 200px;
+        width: 998px;
         z-index: 2;
       }
 
     //animation: scroll 10s linear infinite;
-      width: 100%;
+      //width: 100%;
      //left: 135%;
      &__category{
-       //position: fixed;
-       //right:10px;
-       min-width: 200px;
-       max-width: 250px;
-       height: 10px;
+      position:fixed;
+      left:-250px;
+       width: 200px;
+       height: auto;
+       //height: 10px;
        border: none;
-       margin:-1px 40px 0 40px;
+       // margin:-1px 40px 0 40px;
        /*
        &:first-child {
          margin: -1px 125px 0 0;

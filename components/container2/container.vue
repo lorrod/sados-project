@@ -38,6 +38,8 @@ export default {
   mounted() {
   if (this.$refs.container2.clientWidth > 619 ) {
     this.isMobile = false
+  } else {
+    this.isMobile = true
   }
   window.addEventListener('resize', this.handleResizeContainer)
   },

@@ -155,4 +155,13 @@ name: "rightWindow",
       }
     }
   }
+  @media (max-width: $smallScreen) {
+    .right-window {
+      &__button {
+        &--href {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 </style>
