@@ -54,7 +54,6 @@ export default {
     // height: 100%;
     min-height: 50rem;
     width: 100vw;
-    //padding: 30px;
     display: flex;
     &__info {
       flex: 1 2 auto;
@@ -68,7 +67,7 @@ export default {
       height: auto;
       display: flex;
       flex-direction: column;
-      padding: 0;
+      padding: 0 0 0 $menuWidth;
     }
   }
   @media (max-width: $smallScreen) {

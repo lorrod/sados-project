@@ -110,7 +110,7 @@ export default {
 
   @media (max-width: 1010px) {
     .share-information {
-      padding: 0;
+      padding-left: 0;
       &__text {
         margin: 5px auto;
         text-align: center;
